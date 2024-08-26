@@ -197,15 +197,12 @@ public class FieldScript : MonoBehaviour
 
     public void CreateVillager(int i, int j)
     {
-        //Vector2 coords = dark_cells[i, j].gameObject.GetComponent<RectTransform>().localPosition;
-        //float x = zoomPanel.GetComponent<RectTransform>().rect.width / 2;
-        //float y = zoomPanel.GetComponent<RectTransform>().rect.height / 2;
         i++;
         j++;
         Vector2 coords = zoomPanel.transform.position;
-        float x = (float)(coords.x - (width / 2 + (width % 2 == 0 ? 0 : 0.5) - j) * cellSize.x);
-        float y = (float)(coords.y + (height / 2 + (height % 2 == 0 ? 0 : 0.5) - i) * cellSize.y);
-        zoomPanel.GetComponent<EnemySpawner>().VillagerSpawn(x, y);
+        float x = (float)(coords.x - (width / 2 + (width % 2 == 0 ? 0 : 0.5) - j + 0.5) * cellSize.x);
+        float y = (float)(coords.y + (height / 2 + (height % 2 == 0 ? 0 : 0.5) - i + 0.5) * cellSize.y);
+        zoomPanel.GetComponent<EnemySpawner>().VillagerSpawn(x, y, i - 1, j - 1);
     }
 
     private void InitDarkCell(int i, int j)
