@@ -690,6 +690,7 @@ MonoBehaviour:
   panel: {fileID: 148640887}
   trollPrefab: {fileID: 4249792026229104919, guid: 85278652e2b854748a18b1afbd95f2a0, type: 3}
   knightPrefab: {fileID: 7047255222761363110, guid: c7deac0a02e530a4bb0ed0f92f88de43, type: 3}
+  villagerPrefab: {fileID: 7047255222761363110, guid: ce21a8d9a4ca0a94181ce49e9d4ab463, type: 3}
   interval: 30
   trollPointDownLeft: {fileID: 1034626155}
   trollPointUpRight: {fileID: 231594396}
@@ -2928,14 +2929,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 618767427, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
+  m_Sprite: {fileID: -421440722, guid: 0c8429306861f5a4b9f9719ae2e55ca7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -8,6 +8,7 @@ namespace Game
         public GameObject panel;
         public GameObject trollPrefab;
         public GameObject knightPrefab;
+        public GameObject villagerPrefab;
         public float interval = 2f;
 
         public GameObject trollPointDownLeft;
@@ -52,6 +53,18 @@ namespace Game
             );
 
             GameObject new_spawn = Instantiate(knightPrefab, panel.transform);
+            new_spawn.transform.position = spawnPosition;
+        }
+
+        public void VillagerSpawn(float x, float y)
+        {
+            Vector3 spawnPosition = new Vector3(
+                x,
+                y,
+                0f
+            );
+
+            GameObject new_spawn = Instantiate(villagerPrefab, panel.transform);
             new_spawn.transform.position = spawnPosition;
         }
     }

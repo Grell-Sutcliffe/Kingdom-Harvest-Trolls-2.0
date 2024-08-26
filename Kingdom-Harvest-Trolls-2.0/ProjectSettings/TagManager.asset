@@ -9,6 +9,8 @@ TagManager:
   - Canvas
   - KnightSword
   - TrollSword
+  - Villager
+  - VillagerArea
   layers:
   - Default
   - TransparentFX

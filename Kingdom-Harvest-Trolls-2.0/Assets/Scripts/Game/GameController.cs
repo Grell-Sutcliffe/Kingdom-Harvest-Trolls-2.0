@@ -55,11 +55,12 @@ public class GameController : MonoBehaviour
 
     private string not_enougth = "My lord, you do not have enougth of materials to do the action.";
 
-    private string greeting1 = "Greetings, my king! I'm your Sycophant and I will assist you! You, my king, must defend the kingdom from trolls and expand it!";
-    private string greeting2 = "To the right of the map, there is a panel displating the kingdom's resources. You can choose multipple cards for your kingdom and rotate it for the best match..!.";
-    private string greeting3 = "Castles bring you gold and with this gold and wheat you can hire knight. So, be wise, my king! Fill every cell on the map to win.";
+    private string greeting1 = "Greetings, my king! I'm your servant Sycophant and I will assist you! You, my king, must defend the kingdom and villagers from trolls and expand it!";
+    private string greeting2 = "To the right of the map, there is a panel displating the kingdom's resources. You can buy a new cell and rotate it by clicking on the bigger image of it for the best match on the map!";
+    private string greeting3 = "Castles bring you gold, farms bring you wheat. If you click on a castle, willage or farm you can collect resources. Roads also bring you gold if those are used by villagers.";
+    private string greeting4 = "With gold and wheat you can hire knights who will protect your kingdom from trolls and upgrate your castle. So, be wise, my king! Fill every cell on the map to win.";
 
-    private string[] greetings = new string[3];
+    private string[] greetings = new string[4];
     private int current_greeting = 0;
 
     private bool is_win = false;
@@ -77,13 +78,15 @@ public class GameController : MonoBehaviour
         greetings[0] = greeting1;
         greetings[1] = greeting2;
         greetings[2] = greeting3;
+        greetings[3] = greeting4;
+
+        OpenOptionPanel();
 
         CloseBuyKnightsPanel();
         CloseCastleOkayPanel();
         CloseCellPressedPanel();
         CloseNotOkayPanel();
         CloseOkayPanel();
-        CloseOptionPanel();
         CloseUpgrateCastlePanel();
         CloseDude();
 

@@ -49,8 +49,6 @@ public class FieldScript : MonoBehaviour
             float heightMultiplier = DifficultyManager.Instance.Difficulty.HeightMultiplier;
 
             SetWidth(widthMultiplier);
-
-
             SetHeight(heightMultiplier);
             Debug.Log($"ovhfdsohndiooi22222222 {width} {height} {widthMultiplier} {heightMultiplier}");
         }
@@ -173,6 +171,8 @@ public class FieldScript : MonoBehaviour
         dark_cells[castle_x, castle_y].GetComponent<Image>().sprite = cell.sprite;
         ChangeCellTag(castle_x, castle_y, "Knight");
 
+        //CreateVillager(castle_x, castle_y);
+
         cell = FindCellByType("quater_village", 0, 0, false);
         cells[castle_x, castle_y + 1] = cell;
         dark_cells[castle_x, castle_y + 1].GetComponent<Image>().sprite = cell.sprite;
@@ -191,6 +191,12 @@ public class FieldScript : MonoBehaviour
         cell = FindCellByType("road", 0, 4, false);
         cells[castle_x + 1, castle_y] = cell;
         dark_cells[castle_x + 1, castle_y].GetComponent<Image>().sprite = cell.sprite;
+    }
+
+    public void CreateVillager(int i, int j)
+    {
+        Vector2 coords = dark_cells[i, j].transform.position;
+        zoomPanel.GetComponent<EnemySpawner>().VillagerSpawn(coords.x, coords.y);
     }
 
     private void InitDarkCell(int i, int j)
