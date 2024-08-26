@@ -48,11 +48,6 @@ public class GameController : MonoBehaviour
     public GameObject Dude;
     public TextMeshProUGUI dudesText;
 
-    public TextMeshProUGUI timer1;
-    public TextMeshProUGUI timer2;
-
-    private int sec_0_60;
-
     public Image image;
     public Cell new_cell;
 
@@ -102,7 +97,6 @@ public class GameController : MonoBehaviour
         IncreaseWheatAmount(0);
         IncreaseKnightAmount(0);
 
-        sec_0_60 = 60;
         InvokeRepeating("Timer", 1f, 1f);
     }
 
@@ -235,6 +229,7 @@ public class GameController : MonoBehaviour
                 fieldScript.cells[x, y].wheat_amount = 0;
             }
         }
+        fieldScript.cells[x, y].time_for_peak = 60;
 
         UpdateClaimPanel();
     }
@@ -242,6 +237,11 @@ public class GameController : MonoBehaviour
     public void UpdateClaimPanel()
     {
         cellPressedPanel.gameObject.GetComponent<CellPressedPanelScript>().ChangeTitle(fieldScript.cells[x, y]);
+
+        Cell cell = fieldScript.cells[x, y];
+
+        CastleOkayPanel.GetComponent<TimerScript>().timer_text.text = cell.time_for_peak.ToString();
+        OkayPanel.GetComponent<TimerScript>().timer_text.text = cell.time_for_peak.ToString();
     }
 
     public void IncreaseCoinAmount(int amount)
@@ -273,27 +273,34 @@ public class GameController : MonoBehaviour
 
     public void OpenCellPressedPanel(int index_i, int index_j)
     {
-        cellPressedPanel.gameObject.SetActive(true);
+        if (fieldScript.cells[index_i, index_j].destroyable == true)
+        {
+            cellPressedPanel.gameObject.SetActive(true);
 
-        if (fieldScript.cells[index_i, index_j].is_destroyed == true)
-        {
-            cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(true);
-            cellPressedPanel.GetComponent<CellPressedPanelScript>().ShowImage(false);
-            OpenNotOkayPanel();
-        }
-        else
-        {
-            cellPressedPanel.GetComponent<CellPressedPanelScript>().ShowImage(true);
-            if (fieldScript.cells[index_i, index_j].type == "castle")
+            if (fieldScript.cells[index_i, index_j].is_destroyed == true)
             {
-                cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(false);
-                OpenCastleOkayPanel();
+                cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(true);
+                cellPressedPanel.GetComponent<CellPressedPanelScript>().ShowImage(false);
+                OpenNotOkayPanel();
             }
             else
             {
-                cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(true);
-                OpenOkayPanel();
+                cellPressedPanel.GetComponent<CellPressedPanelScript>().ShowImage(true);
+                if (fieldScript.cells[index_i, index_j].type == "castle")
+                {
+                    cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(false);
+                    OpenCastleOkayPanel();
+                }
+                else
+                {
+                    cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(true);
+                    OpenOkayPanel();
+                }
             }
+        }
+        else
+        {
+            CloseCellPressedPanel();
         }
     }
 
@@ -343,8 +350,11 @@ public class GameController : MonoBehaviour
     public void OpenOkayPanel()
     {
         CloseCastleOkayPanel();
+        CloseNotOkayPanel();
 
         OkayPanel.gameObject.SetActive(true);
+
+        UpgrateTimer();
     }
 
     public void CloseOkayPanel()
@@ -358,6 +368,15 @@ public class GameController : MonoBehaviour
         CloseOkayPanel();
 
         CastleOkayPanel.gameObject.SetActive(true);
+
+        UpgrateTimer();
+    }
+
+    public void UpgrateTimer()
+    {
+        Cell cell = fieldScript.cells[x, y];
+
+        CastleOkayPanel.GetComponent<TimerScript>().timer_text.text = cell.time_for_peak.ToString();
     }
 
     public void CloseCastleOkayPanel()
@@ -507,9 +526,7 @@ public class GameController : MonoBehaviour
 
     private void Timer()
     {
-        sec_0_60 = sec_0_60 - 1;
-        if (sec_0_60 == -1) sec_0_60 = 60;
-        timer1.text = sec_0_60.ToString();
-        timer2.text = sec_0_60.ToString();
+        fieldScript.IncreaseTimer();
+        UpdateClaimPanel();
     }
 }

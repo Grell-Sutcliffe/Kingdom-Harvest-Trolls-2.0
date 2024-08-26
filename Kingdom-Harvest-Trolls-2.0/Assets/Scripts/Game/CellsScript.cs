@@ -72,7 +72,7 @@ namespace Game
             count_of_road = _count_of_road;
             is_just_road = _is_just_road;
             rotation = _rotation;
-            time_for_peak = _time_for_peak;
+            time_for_peak = 60;
         }
     }
 

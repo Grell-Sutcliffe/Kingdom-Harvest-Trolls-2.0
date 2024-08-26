@@ -42,13 +42,14 @@ public class FieldScript : MonoBehaviour
     private void Start()
     {
 
-        if(DifficultyManager.Instance != null){
+        if (DifficultyManager.Instance != null)
+        {
             Debug.Log($"ovhfdsohndiooi111111111 {width} {height}");
             float widthMultiplier = DifficultyManager.Instance.Difficulty.WidthMultiplier;
             float heightMultiplier = DifficultyManager.Instance.Difficulty.HeightMultiplier;
 
             SetWidth(widthMultiplier);
-            
+
 
             SetHeight(heightMultiplier);
             Debug.Log($"ovhfdsohndiooi22222222 {width} {height} {widthMultiplier} {heightMultiplier}");
@@ -65,55 +66,70 @@ public class FieldScript : MonoBehaviour
 
         StartNewGame();
 
-        InvokeRepeating("IncreaseAmount", interval, interval);
-        InvokeRepeating("WheatGrow", interval / 2, interval / 2);
+        //InvokeRepeating("IncreaseAmount", interval, interval);
+        //InvokeRepeating("WheatGrow", interval / 2, interval / 2);
     }
 
-    public void IncreaseAmount()
+    public void IncreaseTimer()
     {
         for (int i = 0; i < height; i++)
             for (int j = 0; j < width; j++)
             {
-                if (cells[i, j].is_destroyed == false)
+                if (cells[i, j].destroyable == true)
                 {
-                    if (cells[i, j].coin_per_time > 0)
+                    cells[i, j].time_for_peak--;
+
+                    if (cells[i, j].time_for_peak < 0)
                     {
-                        cells[i, j].coin_amount += cells[i, j].coin_per_time;
-                    }
-                    if (cells[i, j].wheat_per_time > 0)
-                    {
-                        cells[i, j].wheat_amount += cells[i, j].wheat_per_time;
+                        IncreaseAmount(i, j);
+                        cells[i, j].time_for_peak = 60;
                     }
 
-                    if (cells[i, j].type == "wheat")
+                    if ((cells[i, j].type == "wheat") && (cells[i, j].time_for_peak == 30))
                     {
-                        Cell new_wheat = FindCellByType("wheat", 2, 0, false);
-                        int wheat_amount = cells[i, j].wheat_amount;
-                        cells[i, j] = new_wheat;
-                        cells[i, j].wheat_amount = wheat_amount;
-                        dark_cells[i, j].GetComponent<Image>().sprite = new_wheat.sprite;
+                        WheatGrow(i, j);
                     }
                 }
             }
-        gameController.UpdateClaimPanel();
     }
 
-    public void WheatGrow()
+    public void IncreaseAmount(int i, int j)
     {
-        for (int i = 0; i < height; i++)
-            for (int j = 0; j < width; j++)
+        if (cells[i, j].is_destroyed == false)
+        {
+            if (cells[i, j].coin_per_time > 0)
             {
-                if (cells[i, j].is_destroyed == false)
-                {
-                    if ((cells[i, j].type == "wheat") && (cells[i, j].level == 0))
-                    {
-                        Cell new_wheat = FindCellByType("wheat", 1, 0, false);
-                        cells[i, j] = new_wheat;
-                        dark_cells[i, j].GetComponent<Image>().sprite = new_wheat.sprite;
-                    }
-                }
+                cells[i, j].coin_amount += cells[i, j].coin_per_time;
             }
-        gameController.UpdateClaimPanel();
+            if (cells[i, j].wheat_per_time > 0)
+            {
+                cells[i, j].wheat_amount += cells[i, j].wheat_per_time;
+            }
+
+            if (cells[i, j].type == "wheat")
+            {
+                Cell new_wheat = FindCellByType("wheat", 2, 0, false);
+                int wheat_amount = cells[i, j].wheat_amount;
+                cells[i, j] = new_wheat;
+                cells[i, j].wheat_amount = wheat_amount;
+                dark_cells[i, j].GetComponent<Image>().sprite = new_wheat.sprite;
+            }
+        }
+    }
+
+    public void WheatGrow(int i, int j)
+    {
+        if (cells[i, j].is_destroyed == false)
+        {
+            if ((cells[i, j].type == "wheat") && (cells[i, j].level == 0))
+            {
+                Cell last_cell = cells[i, j];
+                Cell new_wheat = FindCellByType("wheat", 1, 0, false);
+                cells[i, j] = new_wheat;
+                dark_cells[i, j].GetComponent<Image>().sprite = new_wheat.sprite;
+                cells[i, j].time_for_peak = last_cell.time_for_peak;
+            }
+        }
     }
 
     public void StartNewGame()
@@ -226,7 +242,7 @@ public class FieldScript : MonoBehaviour
 
     public void SetWidth(float multiplier)
     {
-        width *=  (int) multiplier;
+        width *= (int)multiplier;
         //widthMultipler = multiplier;
         Debug.Log("ovhfdsohndiooi");
     }
