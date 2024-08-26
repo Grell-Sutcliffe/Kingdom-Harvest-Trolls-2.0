@@ -22,6 +22,6 @@ public class VillagerAnimationController : MonoBehaviour
 
     private void Update()
     {
-        _animator.SetFloat("velocity", (villagerController.is_moving) ? (0) : (1));
+        _animator.SetFloat("velocity", (villagerController.is_moving) ? (1) : (0));
     }
 }

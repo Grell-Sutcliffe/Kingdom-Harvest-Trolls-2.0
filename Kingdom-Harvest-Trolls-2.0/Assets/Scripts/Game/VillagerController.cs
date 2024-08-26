@@ -27,7 +27,7 @@ public class VillagerController : MonoBehaviour
 
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         controller = GameObject.FindGameObjectWithTag("Canvas").GetComponent<MouseUIController>();
-        fieldScript = GameObject.FindGameObjectWithTag("FieldPanel").GetComponent<FieldScript>();
+        fieldScript = GameObject.Find("FieldPanel").GetComponent<FieldScript>();
     }
 
     private void Update()

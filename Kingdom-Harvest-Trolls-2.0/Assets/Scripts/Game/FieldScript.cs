@@ -30,6 +30,8 @@ public class FieldScript : MonoBehaviour
 
     [SerializeField] GameObject dark_cell_prefab;
 
+    public Vector2 cellSize;
+
     //int[,] cells;
     //GameObject[,] new_cells;
 
@@ -57,7 +59,7 @@ public class FieldScript : MonoBehaviour
 
         cellsScript = GetComponent<CellsScript>();
 
-        Vector2 cellSize = panel.GetComponent<GridLayoutGroup>().cellSize;
+        cellSize = panel.GetComponent<GridLayoutGroup>().cellSize;
         panel.GetComponent<RectTransform>().sizeDelta = new Vector2(cellSize.x * width, cellSize.y * height);
         zoomPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(cellSize.x * width, cellSize.y * height);
         checkPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(cellSize.x * width, cellSize.y * height);
@@ -171,7 +173,7 @@ public class FieldScript : MonoBehaviour
         dark_cells[castle_x, castle_y].GetComponent<Image>().sprite = cell.sprite;
         ChangeCellTag(castle_x, castle_y, "Knight");
 
-        //CreateVillager(castle_x, castle_y);
+        CreateVillager(castle_x, castle_y);
 
         cell = FindCellByType("quater_village", 0, 0, false);
         cells[castle_x, castle_y + 1] = cell;
@@ -195,8 +197,15 @@ public class FieldScript : MonoBehaviour
 
     public void CreateVillager(int i, int j)
     {
-        Vector2 coords = dark_cells[i, j].transform.position;
-        zoomPanel.GetComponent<EnemySpawner>().VillagerSpawn(coords.x, coords.y);
+        //Vector2 coords = dark_cells[i, j].gameObject.GetComponent<RectTransform>().localPosition;
+        //float x = zoomPanel.GetComponent<RectTransform>().rect.width / 2;
+        //float y = zoomPanel.GetComponent<RectTransform>().rect.height / 2;
+        i++;
+        j++;
+        Vector2 coords = zoomPanel.transform.position;
+        float x = (float)(coords.x - (width / 2 + (width % 2 == 0 ? 0 : 0.5) - j) * cellSize.x);
+        float y = (float)(coords.y + (height / 2 + (height % 2 == 0 ? 0 : 0.5) - i) * cellSize.y);
+        zoomPanel.GetComponent<EnemySpawner>().VillagerSpawn(x, y);
     }
 
     private void InitDarkCell(int i, int j)
