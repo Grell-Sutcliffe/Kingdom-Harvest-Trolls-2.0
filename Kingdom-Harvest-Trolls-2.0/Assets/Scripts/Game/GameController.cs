@@ -465,7 +465,7 @@ public class GameController : MonoBehaviour
 
         int castle_current_lvl = fieldScript.cells[x, y].level + 1;
         int current_coin_per_time = fieldScript.cells[x, y].coin_per_time;
-        int current_knight_amount = fieldScript.cells[x, y].knight_amount;
+        int current_villager_amount = fieldScript.cells[x, y].villager_amount;
         Cell new_castle = fieldScript.FindCellByType("castle", castle_current_lvl, 1, false);
         int cost = new_castle.cost_of_upgrate;
 
@@ -476,8 +476,8 @@ public class GameController : MonoBehaviour
             int next_coin_per_time = new_castle.coin_per_time;
             script.coin_upgrate.text = current_coin_per_time.ToString() + " -> " + next_coin_per_time.ToString();
 
-            int knight_amount = new_castle.knight_amount;
-            script.knight_upgrate.text = current_knight_amount.ToString() + " -> " + knight_amount.ToString();
+            int villager_amount = new_castle.villager_amount;
+            script.villagers_upgrate.text = current_villager_amount.ToString() + " -> " + villager_amount.ToString();
 
             script.cost.text = cost.ToString();
 
@@ -487,7 +487,7 @@ public class GameController : MonoBehaviour
         {
             script.level_upgrate.text = castle_current_lvl.ToString();
             script.coin_upgrate.text = current_coin_per_time.ToString();
-            script.knight_upgrate.text = current_knight_amount.ToString();
+            script.villagers_upgrate.text = current_villager_amount.ToString();
 
             script.cost.text = cost.ToString();
 

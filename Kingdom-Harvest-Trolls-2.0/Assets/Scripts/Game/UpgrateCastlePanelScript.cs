@@ -9,7 +9,7 @@ public class UpgrateCastlePanelScript : MonoBehaviour
 {
     public TextMeshProUGUI level_upgrate;
     public TextMeshProUGUI coin_upgrate;
-    public TextMeshProUGUI knight_upgrate;
+    public TextMeshProUGUI villagers_upgrate;
     public TextMeshProUGUI cost;
 
     public Button upgrate_button;
