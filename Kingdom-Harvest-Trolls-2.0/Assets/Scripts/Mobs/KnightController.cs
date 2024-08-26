@@ -18,6 +18,7 @@ public class KnightController : MonoBehaviour
     private float zoom = 1f;
 
     private bool is_flipped = false;
+    private bool is_dead = false;
 
     private void Start()
     {
@@ -40,7 +41,11 @@ public class KnightController : MonoBehaviour
 
         if (current_health <= 0)
         {
-            DeathKnight();
+            if (is_dead == false)
+            {
+                is_dead = true;
+                DeathKnight();
+            }
         }
     }
 
@@ -100,13 +105,13 @@ public class KnightController : MonoBehaviour
 
     public void DeathKnight()
     {
+        gameController.IncreaseKnightAmount(-1);
+        gameController.OpenDude("Your forces are taking casualties, my king!");
         DestroyKnight();
     }
 
     private void DestroyKnight()
     {
-        gameController.IncreaseKnightAmount(-1);
-        gameController.OpenDude("Your forces are taking casualties, my king!");
         Destroy(gameObject, 0f);
     }
 }

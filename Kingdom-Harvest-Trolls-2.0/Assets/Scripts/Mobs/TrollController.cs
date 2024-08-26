@@ -32,8 +32,7 @@ public class TrollController : MonoBehaviour
 
         if (target == null)
         {
-            gameController.ShowLosePanel();
-            return;
+            Invoke("PrepareLosePanel", 3.5f);
         }
 
         zoom = controller.zoom;
@@ -106,12 +105,22 @@ public class TrollController : MonoBehaviour
 
     public void DeathTroll()
     {
-        gameController.knight_amount--;
         DestroyTroll();
     }
 
     private void DestroyTroll()
     {
         Destroy(gameObject, 0f);
+    }
+
+    private void PrepareLosePanel()
+    {
+        target = GameObject.FindGameObjectWithTag("Knight");
+
+        if (target == null)
+        {
+            gameController.ShowLosePanel();
+            return;
+        }
     }
 }
