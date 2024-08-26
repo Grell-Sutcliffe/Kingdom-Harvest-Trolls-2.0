@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class VillagerController : MonoBehaviour
@@ -26,6 +27,8 @@ public class VillagerController : MonoBehaviour
 
     private int go_to_x;
     private int go_to_y;
+
+    public float min_difference;
 
     System.Random random = new System.Random();
 
@@ -97,7 +100,7 @@ public class VillagerController : MonoBehaviour
         Vector3 new_way = fieldScript.checks[go_to_x, go_to_y].transform.position;
 
         Vector3 direction = new_way - transform.position;
-        if (direction == new Vector3(0f, 0f, 0f))
+        if ((Math.Abs(direction.x) < min_difference) && (Math.Abs(direction.y) < min_difference))
         {
             index_i = go_to_x;
             index_j = go_to_y;
