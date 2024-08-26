@@ -165,8 +165,8 @@ public class FieldScript : MonoBehaviour
 
     public void PlaceRandomCastle()
     {
-        int castle_x = random.Next(3, height - 3);
-        int castle_y = random.Next(3, width - 3);
+        int castle_x = random.Next(height / 3, 2 * height / 3);
+        int castle_y = random.Next(width / 3, 2 * width / 3);
 
         Cell cell = FindCellByType("castle", 0, 1, false);
         cells[castle_x, castle_y] = cell;

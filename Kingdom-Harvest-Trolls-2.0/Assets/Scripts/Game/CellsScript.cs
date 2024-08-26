@@ -48,8 +48,7 @@ namespace Game
                     int _level,
                     int _count_of_road,
                     bool _is_just_road,
-                    int _rotation,
-                    int _time_for_peak
+                    int _rotation
                     )
         {
             sprite = _sprite;

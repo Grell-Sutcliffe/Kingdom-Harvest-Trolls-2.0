@@ -7675,7 +7675,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: -245696635, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: grass
     destroyable: 0
@@ -7696,7 +7696,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: -1951752273, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: grass
     destroyable: 0
@@ -7717,7 +7717,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: 1021004755, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: half_village
     destroyable: 1
@@ -7732,13 +7732,13 @@ MonoBehaviour:
     interval: 10
     is_destroyed: 0
     cost_of_upgrate: 40
-    coin_per_time: 2
+    coin_per_time: 10
     wheat_per_time: 0
     level: 0
     count_of_road: 0
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: 154368077, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: half_village
     destroyable: 1
@@ -7753,13 +7753,13 @@ MonoBehaviour:
     interval: -1
     is_destroyed: 1
     cost_of_upgrate: 40
-    coin_per_time: 2
+    coin_per_time: 10
     wheat_per_time: 0
     level: 0
     count_of_road: 0
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: 2041666101, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: half_village
     destroyable: 1
@@ -7774,13 +7774,13 @@ MonoBehaviour:
     interval: 10
     is_destroyed: 0
     cost_of_upgrate: 50
-    coin_per_time: 2
+    coin_per_time: 10
     wheat_per_time: 0
     level: 0
     count_of_road: 2
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: -1626971353, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: half_village
     destroyable: 1
@@ -7795,13 +7795,13 @@ MonoBehaviour:
     interval: -1
     is_destroyed: 1
     cost_of_upgrate: 50
-    coin_per_time: 2
+    coin_per_time: 10
     wheat_per_time: 0
     level: 0
     count_of_road: 2
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: 1759783421, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: castle
     destroyable: 1
@@ -7816,13 +7816,13 @@ MonoBehaviour:
     interval: 10
     is_destroyed: 0
     cost_of_upgrate: 100
-    coin_per_time: 15
+    coin_per_time: 40
     wheat_per_time: 0
     level: 2
     count_of_road: 1
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: 191766238, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: castle
     destroyable: 1
@@ -7837,13 +7837,13 @@ MonoBehaviour:
     interval: -1
     is_destroyed: 1
     cost_of_upgrate: 100
-    coin_per_time: 15
+    coin_per_time: 40
     wheat_per_time: 0
     level: 2
     count_of_road: 1
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: -209909509, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: castle
     destroyable: 1
@@ -7858,13 +7858,13 @@ MonoBehaviour:
     interval: 10
     is_destroyed: 0
     cost_of_upgrate: 80
-    coin_per_time: 10
+    coin_per_time: 30
     wheat_per_time: 0
     level: 1
     count_of_road: 1
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: -1274796333, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: castle
     destroyable: 1
@@ -7879,13 +7879,13 @@ MonoBehaviour:
     interval: -1
     is_destroyed: 1
     cost_of_upgrate: 80
-    coin_per_time: 10
+    coin_per_time: 30
     wheat_per_time: 0
     level: 1
     count_of_road: 1
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: 49876147, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: castle
     destroyable: 1
@@ -7900,13 +7900,13 @@ MonoBehaviour:
     interval: 10
     is_destroyed: 0
     cost_of_upgrate: 60
-    coin_per_time: 5
+    coin_per_time: 20
     wheat_per_time: 0
     level: 0
     count_of_road: 1
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: -795599282, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: castle
     destroyable: 1
@@ -7921,13 +7921,13 @@ MonoBehaviour:
     interval: -1
     is_destroyed: 1
     cost_of_upgrate: 60
-    coin_per_time: 5
+    coin_per_time: 20
     wheat_per_time: 0
     level: 0
     count_of_road: 1
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: 2002643159, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: castle
     destroyable: 1
@@ -7948,7 +7948,7 @@ MonoBehaviour:
     count_of_road: 1
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: -23118517, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: quater_village
     destroyable: 1
@@ -7963,13 +7963,13 @@ MonoBehaviour:
     interval: 10
     is_destroyed: 0
     cost_of_upgrate: 20
-    coin_per_time: 1
+    coin_per_time: 5
     wheat_per_time: 0
     level: 0
     count_of_road: 0
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: -517300926, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: quater_village
     destroyable: 1
@@ -7984,13 +7984,13 @@ MonoBehaviour:
     interval: -1
     is_destroyed: 1
     cost_of_upgrate: 20
-    coin_per_time: 1
+    coin_per_time: 5
     wheat_per_time: 0
     level: 0
     count_of_road: 0
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: 510198341, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: quater_village
     destroyable: 1
@@ -8005,13 +8005,13 @@ MonoBehaviour:
     interval: 10
     is_destroyed: 0
     cost_of_upgrate: 25
-    coin_per_time: 1
+    coin_per_time: 5
     wheat_per_time: 0
     level: 0
     count_of_road: 2
     is_just_road: 1
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: -1732615342, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: quater_village
     destroyable: 1
@@ -8026,13 +8026,13 @@ MonoBehaviour:
     interval: -1
     is_destroyed: 1
     cost_of_upgrate: 25
-    coin_per_time: 1
+    coin_per_time: 5
     wheat_per_time: 0
     level: 0
     count_of_road: 2
     is_just_road: 1
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: 1006422492, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: road
     destroyable: 0
@@ -8053,7 +8053,7 @@ MonoBehaviour:
     count_of_road: 4
     is_just_road: 1
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: 1417534210, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: road
     destroyable: 0
@@ -8074,7 +8074,7 @@ MonoBehaviour:
     count_of_road: 3
     is_just_road: 1
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: -1169664318, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: road
     destroyable: 0
@@ -8095,7 +8095,7 @@ MonoBehaviour:
     count_of_road: 2
     is_just_road: 1
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: 964589688, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: road
     destroyable: 0
@@ -8116,7 +8116,7 @@ MonoBehaviour:
     count_of_road: 2
     is_just_road: 1
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: -550783611, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: wheat
     destroyable: 1
@@ -8132,12 +8132,12 @@ MonoBehaviour:
     is_destroyed: 0
     cost_of_upgrate: 70
     coin_per_time: 0
-    wheat_per_time: 10
+    wheat_per_time: 20
     level: 0
     count_of_road: 0
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: 1670284822, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: wheat
     destroyable: 1
@@ -8153,12 +8153,12 @@ MonoBehaviour:
     is_destroyed: 0
     cost_of_upgrate: 70
     coin_per_time: 0
-    wheat_per_time: 10
+    wheat_per_time: 20
     level: 1
     count_of_road: 0
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: -282866103, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: wheat
     destroyable: 1
@@ -8174,12 +8174,12 @@ MonoBehaviour:
     is_destroyed: 0
     cost_of_upgrate: 70
     coin_per_time: 0
-    wheat_per_time: 10
+    wheat_per_time: 20
     level: 2
     count_of_road: 0
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   - sprite: {fileID: -2074874292, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: wheat
     destroyable: 1
@@ -8200,7 +8200,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
-    time_for_peak: 0
+    time_for_peak: 60
   choose_cells: []
   cellChoose:
   - sprite: {fileID: 0}
@@ -8802,7 +8802,7 @@ MonoBehaviour:
   coin_amount: 1000
   wheat_amount: 500
   knight_amount: 1
-  cost_of_new_cell: 100
+  cost_of_new_cell: 50
   coin_amount_text: {fileID: 1631038420}
   wheat_amount_text: {fileID: 446670007}
   knight_amount_text: {fileID: 432650956}

@@ -183,10 +183,14 @@ public class GameController : MonoBehaviour
         else if (sprite == null)
         {
             fieldScript.OnCellClick(index_i, index_j);
-            if ((fieldScript.cells[index_i, index_j].coin_per_time > 0) || (fieldScript.cells[index_i, index_j].wheat_per_time > 0) || (fieldScript.cells[index_i, index_j].is_destroyed))
+            if (fieldScript.cells[index_i, index_j].destroyable)
             {
                 OpenCellPressedPanel(index_i, index_j);
                 UpdateClaimPanel();
+            }
+            else
+            {
+                CloseCellPressedPanel();
             }
         }
     }
@@ -227,9 +231,10 @@ public class GameController : MonoBehaviour
                 Cell new_wheat = fieldScript.FindCellByType("wheat", 0, 0, false);
                 UpgrateCellInfo(x, y, new_wheat);
                 fieldScript.cells[x, y].wheat_amount = 0;
+                fieldScript.cells[x, y].time_for_peak = 60;
             }
         }
-        fieldScript.cells[x, y].time_for_peak = 60;
+        //fieldScript.cells[x, y].time_for_peak = 60;
 
         UpdateClaimPanel();
     }
@@ -273,34 +278,27 @@ public class GameController : MonoBehaviour
 
     public void OpenCellPressedPanel(int index_i, int index_j)
     {
-        if (fieldScript.cells[index_i, index_j].destroyable == true)
-        {
-            cellPressedPanel.gameObject.SetActive(true);
+        cellPressedPanel.gameObject.SetActive(true);
 
-            if (fieldScript.cells[index_i, index_j].is_destroyed == true)
-            {
-                cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(true);
-                cellPressedPanel.GetComponent<CellPressedPanelScript>().ShowImage(false);
-                OpenNotOkayPanel();
-            }
-            else
-            {
-                cellPressedPanel.GetComponent<CellPressedPanelScript>().ShowImage(true);
-                if (fieldScript.cells[index_i, index_j].type == "castle")
-                {
-                    cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(false);
-                    OpenCastleOkayPanel();
-                }
-                else
-                {
-                    cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(true);
-                    OpenOkayPanel();
-                }
-            }
+        if (fieldScript.cells[index_i, index_j].is_destroyed == true)
+        {
+            cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(true);
+            cellPressedPanel.GetComponent<CellPressedPanelScript>().ShowImage(false);
+            OpenNotOkayPanel();
         }
         else
         {
-            CloseCellPressedPanel();
+            cellPressedPanel.GetComponent<CellPressedPanelScript>().ShowImage(true);
+            if (fieldScript.cells[index_i, index_j].type == "castle")
+            {
+                cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(false);
+                OpenCastleOkayPanel();
+            }
+            else
+            {
+                cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(true);
+                OpenOkayPanel();
+            }
         }
     }
 
@@ -420,7 +418,7 @@ public class GameController : MonoBehaviour
     public void RepairCell()
     {
         Cell cell = fieldScript.cells[x, y];
-        Cell new_cell = fieldScript.FindCellByType(cell.type, cell.level + (cell.type == "castle" ? 1 : 0), cell.count_of_road, false);
+        Cell new_cell = fieldScript.FindCellByType(cell.type, cell.level + (cell.level == -1 ? 1 : 0), cell.count_of_road, false);
 
         if (coin_amount - new_cell.cost_of_upgrate < 0)
         {
@@ -434,6 +432,9 @@ public class GameController : MonoBehaviour
             fieldScript.ChangeCellTag(x, y, "Knight");
 
             UpdateUpgratePanelInfo();
+
+            CloseNotOkayPanel();
+            OpenCellPressedPanel(x, y);
         }
     }
 
@@ -476,13 +477,13 @@ public class GameController : MonoBehaviour
             script.knight_upgrate.text = current_knight_amount.ToString() + " -> " + knight_amount.ToString();
 
             script.cost.text = cost.ToString();
+
+            script.upgrate_button.gameObject.SetActive(true);
         }
         else
         {
             script.level_upgrate.text = castle_current_lvl.ToString();
-
             script.coin_upgrate.text = current_coin_per_time.ToString();
-
             script.knight_upgrate.text = current_knight_amount.ToString();
 
             script.cost.text = cost.ToString();

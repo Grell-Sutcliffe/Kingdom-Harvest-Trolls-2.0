@@ -9,6 +9,8 @@ public class ColliderScript : MonoBehaviour
     public int index_i;
     public int index_j;
 
+    private int is_broking = 0;
+
     GameController gameController;
     FieldScript fieldScript;
     CellsScript cellsScript;
@@ -27,6 +29,8 @@ public class ColliderScript : MonoBehaviour
         {
             if (collision.gameObject.tag == "Troll")
             {
+                is_broking++;
+
                 Cell cell = fieldScript.cells[index_i, index_j];
                 Cell new_cell;
 
@@ -43,9 +47,13 @@ public class ColliderScript : MonoBehaviour
 
                 fieldScript.ChangeCellTag(index_i, index_j, "Untagged");
 
-                if (cell.type == "castle")
+                if ((cell.type == "castle") && (is_broking > 1))
                 {
-                    Invoke("BreakCastle", 2f);
+                    BreakCastle();
+                }
+                else
+                {
+                    is_broking = 0;
                 }
             }
         }
@@ -56,5 +64,7 @@ public class ColliderScript : MonoBehaviour
         Cell new_cell = fieldScript.FindCellByType("castle", -1, 1, true);
 
         gameController.UpgrateCellInfo(index_i, index_j, new_cell);
+
+        gameController.OpenDude("The castle is turning into riuns!");
     }
 }

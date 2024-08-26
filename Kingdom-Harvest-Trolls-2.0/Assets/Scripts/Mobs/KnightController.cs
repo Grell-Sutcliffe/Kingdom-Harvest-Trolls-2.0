@@ -100,13 +100,13 @@ public class KnightController : MonoBehaviour
 
     public void DeathKnight()
     {
-        gameController.knight_amount--;
         DestroyKnight();
     }
 
     private void DestroyKnight()
     {
-        gameController.knight_amount--;
+        gameController.IncreaseKnightAmount(-1);
+        gameController.OpenDude("Your forces are taking casualties, my king!");
         Destroy(gameObject, 0f);
     }
 }
