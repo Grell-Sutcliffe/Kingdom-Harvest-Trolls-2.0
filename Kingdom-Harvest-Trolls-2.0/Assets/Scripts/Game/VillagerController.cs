@@ -35,6 +35,8 @@ public class VillagerController : MonoBehaviour
 
     public float min_difference;
 
+    private bool needs_help = false;
+
     private string help = "HELP!";
     private string[] in_touch = { 
         "Hmm?",
@@ -160,8 +162,11 @@ public class VillagerController : MonoBehaviour
             if (index_i + 1 < fieldScript.height)
                 if (fieldScript.cells[index_i + 1, index_j].up == "road")
                 {
-                    System.Array.Resize(ref ways, ways.Length + 1);
-                    ways[ways.Length - 1] = new Tuple<int, int>(index_i + 1, index_j);
+                    if (fieldScript.cells[index_i + 1, index_j].is_destroyed == false || fieldScript.cells[index_i + 1, index_j].is_just_road == false)
+                    {
+                        System.Array.Resize(ref ways, ways.Length + 1);
+                        ways[ways.Length - 1] = new Tuple<int, int>(index_i + 1, index_j);
+                    }
                 }
         }
 
@@ -170,8 +175,11 @@ public class VillagerController : MonoBehaviour
             if (index_i - 1 > -1)
                 if (fieldScript.cells[index_i - 1, index_j].down == "road")
                 {
-                    System.Array.Resize(ref ways, ways.Length + 1);
-                    ways[ways.Length - 1] = new Tuple<int, int>(index_i - 1, index_j);
+                    if (fieldScript.cells[index_i - 1, index_j].is_destroyed == false || fieldScript.cells[index_i - 1, index_j].is_just_road == false)
+                    {
+                        System.Array.Resize(ref ways, ways.Length + 1);
+                        ways[ways.Length - 1] = new Tuple<int, int>(index_i - 1, index_j);
+                    }
                 }
         }
 
@@ -180,8 +188,11 @@ public class VillagerController : MonoBehaviour
             if (index_j + 1 < fieldScript.width)
                 if (fieldScript.cells[index_i, index_j + 1].left == "road")
                 {
-                    System.Array.Resize(ref ways, ways.Length + 1);
-                    ways[ways.Length - 1] = new Tuple<int, int>(index_i, index_j + 1);
+                    if (fieldScript.cells[index_i, index_j + 1].is_destroyed == false || fieldScript.cells[index_i, index_j + 1].is_just_road == false)
+                    {
+                        System.Array.Resize(ref ways, ways.Length + 1);
+                        ways[ways.Length - 1] = new Tuple<int, int>(index_i, index_j + 1);
+                    }
                 }
         }
 
@@ -190,8 +201,11 @@ public class VillagerController : MonoBehaviour
             if (index_j - 1 > -1)
                 if (fieldScript.cells[index_i, index_j - 1].right == "road")
                 {
-                    System.Array.Resize(ref ways, ways.Length + 1);
-                    ways[ways.Length - 1] = new Tuple<int, int>(index_i, index_j - 1);
+                    if (fieldScript.cells[index_i, index_j - 1].is_destroyed == false || fieldScript.cells[index_i, index_j - 1].is_just_road == false)
+                    {
+                        System.Array.Resize(ref ways, ways.Length + 1);
+                        ways[ways.Length - 1] = new Tuple<int, int>(index_i, index_j - 1);
+                    }
                 }
         }
 
@@ -200,11 +214,23 @@ public class VillagerController : MonoBehaviour
             int index = random.Next(0, ways.Length);
             go_to_x = ways[index].Item1;
             go_to_y = ways[index].Item2;
+
+            needs_help = false;
         }
         else
         {
             go_to_x = index_i;
             go_to_y = index_j;
+
+            if (fieldScript.cells[index_i, index_j].is_destroyed == true)
+            {
+                if (needs_help == false)
+                {
+                    AskForHelp(help, 30f);
+                }
+
+                needs_help = true;
+            }
 
             InvokeFindWay();
         }
@@ -220,6 +246,26 @@ public class VillagerController : MonoBehaviour
         villager_speech.text = speech;
 
         Invoke("HideDialog", time);
+    }
+
+    private void AskForHelp(string speech, float time)
+    {
+        villager_dialog.SetActive(true);
+        villager_speech.text = speech;
+
+        Invoke("DieOrLive", time);
+    }
+
+    private void DieOrLive()
+    {
+        if (fieldScript.cells[go_to_x, go_to_y].is_destroyed == true)
+        {
+            DeathVillager();
+        }
+        else
+        {
+            HideDialog();
+        }
     }
 
     private void HideDialog()
@@ -245,7 +291,7 @@ public class VillagerController : MonoBehaviour
 
     public void DeathVillager()
     {
-        gameController.IncreaseKnightAmount(-1);
+        gameController.IncreaseVillagerAmount(-1);
         gameController.OpenDude("The population of villagers is decreasing!");
         DestroyVillager();
     }

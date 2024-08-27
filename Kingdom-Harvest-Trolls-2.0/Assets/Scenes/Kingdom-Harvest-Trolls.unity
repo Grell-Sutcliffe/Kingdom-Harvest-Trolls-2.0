@@ -7784,7 +7784,7 @@ MonoBehaviour:
     interval: 10
     is_destroyed: 0
     cost_of_upgrate: 40
-    coin_per_time: 10
+    coin_per_time: 50
     wheat_per_time: 0
     level: 0
     count_of_road: 0
@@ -7805,7 +7805,7 @@ MonoBehaviour:
     interval: -1
     is_destroyed: 1
     cost_of_upgrate: 40
-    coin_per_time: 10
+    coin_per_time: 50
     wheat_per_time: 0
     level: 0
     count_of_road: 0
@@ -7826,7 +7826,7 @@ MonoBehaviour:
     interval: 10
     is_destroyed: 0
     cost_of_upgrate: 50
-    coin_per_time: 10
+    coin_per_time: 50
     wheat_per_time: 0
     level: 0
     count_of_road: 2
@@ -7847,7 +7847,7 @@ MonoBehaviour:
     interval: -1
     is_destroyed: 1
     cost_of_upgrate: 50
-    coin_per_time: 10
+    coin_per_time: 50
     wheat_per_time: 0
     level: 0
     count_of_road: 2
@@ -7868,7 +7868,7 @@ MonoBehaviour:
     interval: 10
     is_destroyed: 0
     cost_of_upgrate: 100
-    coin_per_time: 40
+    coin_per_time: 150
     wheat_per_time: 0
     level: 2
     count_of_road: 1
@@ -7889,7 +7889,7 @@ MonoBehaviour:
     interval: -1
     is_destroyed: 1
     cost_of_upgrate: 100
-    coin_per_time: 40
+    coin_per_time: 150
     wheat_per_time: 0
     level: 2
     count_of_road: 1
@@ -7910,7 +7910,7 @@ MonoBehaviour:
     interval: 10
     is_destroyed: 0
     cost_of_upgrate: 80
-    coin_per_time: 30
+    coin_per_time: 120
     wheat_per_time: 0
     level: 1
     count_of_road: 1
@@ -7931,7 +7931,7 @@ MonoBehaviour:
     interval: -1
     is_destroyed: 1
     cost_of_upgrate: 80
-    coin_per_time: 30
+    coin_per_time: 120
     wheat_per_time: 0
     level: 1
     count_of_road: 1
@@ -7952,7 +7952,7 @@ MonoBehaviour:
     interval: 10
     is_destroyed: 0
     cost_of_upgrate: 60
-    coin_per_time: 20
+    coin_per_time: 100
     wheat_per_time: 0
     level: 0
     count_of_road: 1
@@ -7973,7 +7973,7 @@ MonoBehaviour:
     interval: -1
     is_destroyed: 1
     cost_of_upgrate: 60
-    coin_per_time: 20
+    coin_per_time: 100
     wheat_per_time: 0
     level: 0
     count_of_road: 1
@@ -8015,7 +8015,7 @@ MonoBehaviour:
     interval: 10
     is_destroyed: 0
     cost_of_upgrate: 20
-    coin_per_time: 5
+    coin_per_time: 30
     wheat_per_time: 0
     level: 0
     count_of_road: 0
@@ -8036,7 +8036,7 @@ MonoBehaviour:
     interval: -1
     is_destroyed: 1
     cost_of_upgrate: 20
-    coin_per_time: 5
+    coin_per_time: 30
     wheat_per_time: 0
     level: 0
     count_of_road: 0
@@ -8057,7 +8057,7 @@ MonoBehaviour:
     interval: 10
     is_destroyed: 0
     cost_of_upgrate: 25
-    coin_per_time: 5
+    coin_per_time: 30
     wheat_per_time: 0
     level: 0
     count_of_road: 2
@@ -8078,7 +8078,7 @@ MonoBehaviour:
     interval: -1
     is_destroyed: 1
     cost_of_upgrate: 25
-    coin_per_time: 5
+    coin_per_time: 30
     wheat_per_time: 0
     level: 0
     count_of_road: 2
@@ -8184,7 +8184,7 @@ MonoBehaviour:
     is_destroyed: 0
     cost_of_upgrate: 70
     coin_per_time: 0
-    wheat_per_time: 20
+    wheat_per_time: 50
     level: 0
     count_of_road: 0
     is_just_road: 0
@@ -8205,7 +8205,7 @@ MonoBehaviour:
     is_destroyed: 0
     cost_of_upgrate: 70
     coin_per_time: 0
-    wheat_per_time: 20
+    wheat_per_time: 50
     level: 1
     count_of_road: 0
     is_just_road: 0
@@ -8226,7 +8226,7 @@ MonoBehaviour:
     is_destroyed: 0
     cost_of_upgrate: 70
     coin_per_time: 0
-    wheat_per_time: 20
+    wheat_per_time: 50
     level: 2
     count_of_road: 0
     is_just_road: 0
