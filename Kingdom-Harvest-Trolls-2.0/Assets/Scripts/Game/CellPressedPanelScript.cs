@@ -30,7 +30,7 @@ public class CellPressedPanelScript : MonoBehaviour
     {
         title.text = cell.title;
 
-        if (cell.coin_per_time > 0)
+        if ((cell.coin_per_time > 0) || (cell.type == "road"))
         {
             image.GetComponent<Image>().sprite = coin;
             amount.text = cell.coin_amount.ToString();

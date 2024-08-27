@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour
     public GameObject costOfCellPanel;
 
     public GameObject OkayPanel;
+    public GameObject RoadOkayPanel;
     public GameObject CastleOkayPanel;
     public GameObject NotOkayPanel;
     public GameObject UpgrateCastlePanel;
@@ -89,6 +90,7 @@ public class GameController : MonoBehaviour
         CloseCellPressedPanel();
         CloseNotOkayPanel();
         CloseOkayPanel();
+        CloseRoadOkayPanel();
         CloseUpgrateCastlePanel();
         CloseDude();
 
@@ -216,7 +218,9 @@ public class GameController : MonoBehaviour
 
     public void EditCell()
     {
-        while (new_cell.rotation > 0)
+        int rotation = new_cell.rotation;
+
+        while (rotation > 0)
         {
             string temp = new_cell.down;
             new_cell.down = new_cell.left;
@@ -224,8 +228,26 @@ public class GameController : MonoBehaviour
             new_cell.up = new_cell.right;
             new_cell.right = temp;
 
-            new_cell.rotation--;
+            rotation--;
         }
+    }
+
+    public Cell EditRepairedCell(Cell repaired_cell)
+    {
+        int rotation = repaired_cell.rotation;
+
+        while (rotation > 0)
+        {
+            string temp = repaired_cell.down;
+            repaired_cell.down = repaired_cell.left;
+            repaired_cell.left = repaired_cell.up;
+            repaired_cell.up = repaired_cell.right;
+            repaired_cell.right = temp;
+
+            rotation--;
+        }
+
+        return repaired_cell;
     }
 
     public void SpriteOnClick()
@@ -236,7 +258,7 @@ public class GameController : MonoBehaviour
 
     public void IncreaseAmount()
     {
-        if (fieldScript.cells[x, y].coin_per_time > 0)
+        if ((fieldScript.cells[x, y].coin_per_time > 0) || (fieldScript.cells[x, y].type == "road"))
         {
             IncreaseCoinAmount(fieldScript.cells[x, y].coin_amount);
             fieldScript.cells[x, y].coin_amount = 0;
@@ -320,8 +342,12 @@ public class GameController : MonoBehaviour
                 cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(false);
                 OpenCastleOkayPanel();
             }
-            else
+            else if (fieldScript.cells[index_i, index_j].type == "road")
             {
+                cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(true);
+                OpenRoadOkayPanel();
+            }
+            else {
                 cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(true);
                 OpenOkayPanel();
             }
@@ -366,6 +392,7 @@ public class GameController : MonoBehaviour
         CloseCastleOkayPanel();
         CloseNotOkayPanel();
         CloseOkayPanel();
+        CloseRoadOkayPanel();
         CloseUpgrateCastlePanel();
 
         cellPressedPanel.gameObject.SetActive(false);
@@ -374,11 +401,26 @@ public class GameController : MonoBehaviour
     public void OpenOkayPanel()
     {
         CloseCastleOkayPanel();
+        CloseRoadOkayPanel();
         CloseNotOkayPanel();
 
         OkayPanel.gameObject.SetActive(true);
 
         UpgrateTimer();
+    }
+
+    public void OpenRoadOkayPanel()
+    {
+        CloseCastleOkayPanel();
+        CloseNotOkayPanel();
+        CloseOkayPanel();
+
+        RoadOkayPanel.SetActive(true);
+    }
+
+    public void CloseRoadOkayPanel()
+    {
+        RoadOkayPanel.SetActive(false);
     }
 
     public void CloseOkayPanel()
@@ -389,6 +431,7 @@ public class GameController : MonoBehaviour
     public void OpenCastleOkayPanel()
     {
         CloseNotOkayPanel();
+        CloseRoadOkayPanel();
         CloseOkayPanel();
 
         CastleOkayPanel.gameObject.SetActive(true);
@@ -411,6 +454,8 @@ public class GameController : MonoBehaviour
     public void OpenNotOkayPanel()
     {
         CloseCastleOkayPanel();
+        CloseRoadOkayPanel();
+        CloseOkayPanel();
 
         NotOkayPanel.gameObject.SetActive(true);
 
@@ -445,6 +490,8 @@ public class GameController : MonoBehaviour
     {
         Cell cell = fieldScript.cells[x, y];
         Cell new_cell = fieldScript.FindCellByType(cell.type, cell.level + (cell.level == -1 ? 1 : 0), cell.count_of_road, false);
+        new_cell.rotation = cell.rotation;
+        new_cell = EditRepairedCell(new_cell);
 
         if (coin_amount - new_cell.cost_of_upgrate < 0)
         {

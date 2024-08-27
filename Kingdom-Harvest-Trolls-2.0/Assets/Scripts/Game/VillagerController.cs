@@ -63,6 +63,9 @@ public class VillagerController : MonoBehaviour
 
         //transform.position = fieldScript.checks[index_i, index_j].transform.position;
 
+        go_to_x = index_i;
+        go_to_y = index_j;
+
         FindWay();
     }
 
@@ -162,7 +165,7 @@ public class VillagerController : MonoBehaviour
             if (index_i + 1 < fieldScript.height)
                 if (fieldScript.cells[index_i + 1, index_j].up == "road")
                 {
-                    if (fieldScript.cells[index_i + 1, index_j].is_destroyed == false || fieldScript.cells[index_i + 1, index_j].is_just_road == false)
+                    if (fieldScript.cells[index_i + 1, index_j].is_destroyed == false/* || fieldScript.cells[index_i + 1, index_j].is_just_road == false*/)
                     {
                         System.Array.Resize(ref ways, ways.Length + 1);
                         ways[ways.Length - 1] = new Tuple<int, int>(index_i + 1, index_j);
@@ -175,7 +178,7 @@ public class VillagerController : MonoBehaviour
             if (index_i - 1 > -1)
                 if (fieldScript.cells[index_i - 1, index_j].down == "road")
                 {
-                    if (fieldScript.cells[index_i - 1, index_j].is_destroyed == false || fieldScript.cells[index_i - 1, index_j].is_just_road == false)
+                    if (fieldScript.cells[index_i - 1, index_j].is_destroyed == false/* || fieldScript.cells[index_i - 1, index_j].is_just_road == false*/)
                     {
                         System.Array.Resize(ref ways, ways.Length + 1);
                         ways[ways.Length - 1] = new Tuple<int, int>(index_i - 1, index_j);
@@ -188,7 +191,7 @@ public class VillagerController : MonoBehaviour
             if (index_j + 1 < fieldScript.width)
                 if (fieldScript.cells[index_i, index_j + 1].left == "road")
                 {
-                    if (fieldScript.cells[index_i, index_j + 1].is_destroyed == false || fieldScript.cells[index_i, index_j + 1].is_just_road == false)
+                    if (fieldScript.cells[index_i, index_j + 1].is_destroyed == false/* || fieldScript.cells[index_i, index_j + 1].is_just_road == false*/)
                     {
                         System.Array.Resize(ref ways, ways.Length + 1);
                         ways[ways.Length - 1] = new Tuple<int, int>(index_i, index_j + 1);
@@ -201,7 +204,7 @@ public class VillagerController : MonoBehaviour
             if (index_j - 1 > -1)
                 if (fieldScript.cells[index_i, index_j - 1].right == "road")
                 {
-                    if (fieldScript.cells[index_i, index_j - 1].is_destroyed == false || fieldScript.cells[index_i, index_j - 1].is_just_road == false)
+                    if (fieldScript.cells[index_i, index_j - 1].is_destroyed == false/* || fieldScript.cells[index_i, index_j - 1].is_just_road == false*/)
                     {
                         System.Array.Resize(ref ways, ways.Length + 1);
                         ways[ways.Length - 1] = new Tuple<int, int>(index_i, index_j - 1);

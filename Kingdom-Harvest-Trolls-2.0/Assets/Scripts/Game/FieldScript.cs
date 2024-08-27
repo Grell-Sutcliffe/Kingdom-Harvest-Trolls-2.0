@@ -24,6 +24,9 @@ public class FieldScript : MonoBehaviour
     public int width;
     public int height;
 
+    private int first_castle_x;
+    private int first_castle_y;
+
     [SerializeField] GameObject panel;
     [SerializeField] GameObject zoomPanel;
     [SerializeField] GameObject colliderPanel;
@@ -173,7 +176,9 @@ public class FieldScript : MonoBehaviour
         dark_cells[castle_x, castle_y].GetComponent<Image>().sprite = cell.sprite;
         ChangeCellTag(castle_x, castle_y, "Knight");
 
-        CreateVillager(castle_x, castle_y);
+        first_castle_x = castle_x;
+        first_castle_y = castle_y;
+        Invoke("CreateFirstVillager", 2f);
 
         cell = FindCellByType("quater_village", 0, 0, false);
         cells[castle_x, castle_y + 1] = cell;
@@ -193,6 +198,13 @@ public class FieldScript : MonoBehaviour
         cell = FindCellByType("road", 4, 4, false);
         cells[castle_x + 1, castle_y] = cell;
         dark_cells[castle_x + 1, castle_y].GetComponent<Image>().sprite = cell.sprite;
+    }
+
+    private void CreateFirstVillager()
+    {
+        Vector3 new_villager = checks[first_castle_x, first_castle_y].transform.position;
+        zoomPanel.GetComponent<EnemySpawner>().VillagerSpawn(new_villager, first_castle_x, first_castle_y);
+        //CreateVillager(first_castle_x, first_castle_y);
     }
 
     public void CreateVillager(int i, int j)

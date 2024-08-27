@@ -22,7 +22,8 @@ public class ColliderScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Villager") {
+        if (collision.gameObject.tag != "Villager")
+        {
             if ((fieldScript.cells[index_i, index_j].destroyable) && (fieldScript.cells[index_i, index_j].is_destroyed == false))
             {
                 if (collision.gameObject.tag == "Troll")
@@ -39,6 +40,9 @@ public class ColliderScript : MonoBehaviour
                         new_cell = fieldScript.FindCellByType(cell.type, cell.level, cell.count_of_road, true);
                     }
 
+                    new_cell.rotation = cell.rotation;
+                    new_cell = gameController.EditRepairedCell(new_cell);
+
                     gameController.UpgrateCellInfo(index_i, index_j, new_cell);
 
                     fieldScript.ChangeCellTag(index_i, index_j, "Untagged");
@@ -50,6 +54,14 @@ public class ColliderScript : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            if (fieldScript.cells[index_i, index_j].type == "road")
+            {
+                fieldScript.cells[index_i, index_j].coin_amount += fieldScript.cells[index_i, index_j].count_of_road;
+            }
+        }
+        gameController.UpdateClaimPanel();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -69,6 +81,9 @@ public class ColliderScript : MonoBehaviour
 
                         gameController.OpenDude("The castle is turning into riuns!");
 
+                        new_cell.rotation = cell.rotation;
+                        new_cell = gameController.EditRepairedCell(new_cell);
+
                         gameController.UpgrateCellInfo(index_i, index_j, new_cell);
 
                         fieldScript.ChangeCellTag(index_i, index_j, "Untagged");
@@ -76,6 +91,8 @@ public class ColliderScript : MonoBehaviour
                 }
             }
         }
+
+        gameController.UpdateClaimPanel();
     }
 
     private void CastleSecondChance()
