@@ -9,15 +9,17 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public int coin_amount;
-    public int wheat_amount;
-    public int knight_amount;
+    public int coin_amount = 500;
+    public int wheat_amount = 200;
+    public int knight_amount = 1;
+    public int villager_amount = 1;
 
     public int cost_of_new_cell = 200;
 
     public TextMeshProUGUI coin_amount_text;
     public TextMeshProUGUI wheat_amount_text;
     public TextMeshProUGUI knight_amount_text;
+    public TextMeshProUGUI villager_amount_text;
 
     [SerializeField] GameObject colliderPanel;
 
@@ -99,6 +101,7 @@ public class GameController : MonoBehaviour
         IncreaseCoinAmount(0);
         IncreaseWheatAmount(0);
         IncreaseKnightAmount(0);
+        IncreaseVillagerAmount(0);
 
         InvokeRepeating("Timer", 1f, 1f);
     }
@@ -207,6 +210,8 @@ public class GameController : MonoBehaviour
     {
         Vector3 new_villager = fieldScript.checks[x, y].transform.position;
         Zoom.GetComponent<EnemySpawner>().VillagerSpawn(new_villager, x, y);
+
+        IncreaseVillagerAmount(1);
     }
 
     public void EditCell()
@@ -276,6 +281,13 @@ public class GameController : MonoBehaviour
         {
             coin_amount_text.text = coin_amount.ToString();
         }
+    }
+
+    public void IncreaseVillagerAmount(int amount)
+    {
+        villager_amount += amount;
+
+        villager_amount_text.text = villager_amount.ToString();
     }
 
     public void IncreaseWheatAmount(int amount)

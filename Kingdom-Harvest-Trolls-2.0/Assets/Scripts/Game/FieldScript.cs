@@ -190,7 +190,7 @@ public class FieldScript : MonoBehaviour
         dark_cells[castle_x, castle_y - 1].GetComponent<Image>().sprite = cell.sprite;
         ChangeCellTag(castle_x, castle_y - 1, "Knight");
 
-        cell = FindCellByType("road", 0, 4, false);
+        cell = FindCellByType("road", 4, 4, false);
         cells[castle_x + 1, castle_y] = cell;
         dark_cells[castle_x + 1, castle_y].GetComponent<Image>().sprite = cell.sprite;
     }

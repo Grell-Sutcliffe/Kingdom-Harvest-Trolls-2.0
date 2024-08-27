@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VillagerController : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class VillagerController : MonoBehaviour
     private GameController gameController;
     private FieldScript fieldScript;
     private GameObject zoomPanel;
+
+    [SerializeField] GameObject villager_dialog;
+    [SerializeField] TextMeshProUGUI villager_speech;
 
     public int max_health = 50;
     private int current_health;
@@ -30,6 +35,16 @@ public class VillagerController : MonoBehaviour
 
     public float min_difference;
 
+    private string help = "HELP!";
+    private string[] in_touch = { 
+        "Hmm?",
+        "Ah??",
+        "???",
+        "Hello!",
+        "Hehe",
+        "Beep"
+    };
+
     System.Random random = new System.Random();
 
     private void Start()
@@ -41,6 +56,8 @@ public class VillagerController : MonoBehaviour
         fieldScript = GameObject.Find("FieldPanel").GetComponent<FieldScript>();
 
         zoomPanel = GameObject.Find("ZoomPanel");
+
+        villager_dialog.SetActive(false);
 
         //transform.position = fieldScript.checks[index_i, index_j].transform.position;
 
@@ -79,6 +96,12 @@ public class VillagerController : MonoBehaviour
                 DeathVillager();
             }
         }
+    }
+
+    public void InTouch()
+    {
+        int index = random.Next(0, in_touch.Length);
+        ShowDiaog(in_touch[index], 3f);
     }
 
     private void InvokeFindWay()
@@ -191,10 +214,27 @@ public class VillagerController : MonoBehaviour
         System.Array.Resize(ref ways, 0);
     }
 
+    private void ShowDiaog(string speech, float time)
+    {
+        villager_dialog.SetActive(true);
+        villager_speech.text = speech;
+
+        Invoke("HideDialog", time);
+    }
+
+    private void HideDialog()
+    {
+        villager_dialog.SetActive(false);
+    }
+
     public void Flip()
     {
         Vector3 scale = gameObject.transform.localScale;
         gameObject.transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+
+        Vector3 dialog_scale = villager_dialog.transform.localScale;
+        villager_dialog.transform.localScale = new Vector3(-dialog_scale.x, dialog_scale.y, dialog_scale.z);
+
         is_flipped = !is_flipped;
     }
 

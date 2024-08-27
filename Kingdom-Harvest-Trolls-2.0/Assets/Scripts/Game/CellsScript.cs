@@ -77,7 +77,7 @@ namespace Game
 
     public class CellsScript : MonoBehaviour
     {
-        public Cell[] all_cells = new Cell[26];
+        public Cell[] all_cells = new Cell[30];
         public Cell[] choose_cells;
 
         public Cell[] cellChoose = new Cell[3];
@@ -92,7 +92,7 @@ namespace Game
         {
             for (int i = 0; i < all_cells.Length; i++)
             {
-                if ((all_cells[i].type != "grass") && (!all_cells[i].is_destroyed && all_cells[i].level == 0))
+                if ((all_cells[i].type != "grass") && (!all_cells[i].is_destroyed && (all_cells[i].level == 0 || all_cells[i].type == "road")))
                 {
                     System.Array.Resize(ref choose_cells, choose_cells.Length + 1);
                     choose_cells[choose_cells.Length - 1] = all_cells[i];
