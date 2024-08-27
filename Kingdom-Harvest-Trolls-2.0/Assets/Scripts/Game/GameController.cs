@@ -463,10 +463,22 @@ public class GameController : MonoBehaviour
         }
         else
         {
+            int new_villagers_amount = new_castle.villager_amount - fieldScript.cells[x, y].villager_amount;
+
             IncreaseCoinAmount(-new_castle.cost_of_upgrate);
             UpgrateCellInfo(x, y, new_castle);
 
             UpdateUpgratePanelInfo();
+
+            CreateNewVillagers(new_villagers_amount);
+        }
+    }
+
+    private void CreateNewVillagers(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            CreateVillager();
         }
     }
 
