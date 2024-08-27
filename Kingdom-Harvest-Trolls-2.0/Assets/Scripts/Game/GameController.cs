@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour
     public GameObject NotOkayPanel;
     public GameObject UpgrateCastlePanel;
     public GameObject BuyKnightsPanel;
+    public GameObject SurePanel;
 
     public GameObject WinPanel;
     public GameObject LosePanel;
@@ -55,15 +56,17 @@ public class GameController : MonoBehaviour
     public Cell new_cell;
 
     private int x, y;
+    private GameObject set_new_cell;
 
-    private string not_enougth = "My lord, you do not have enougth of materials to do the action.";
+    private string not_enougth = "My lord, you do not have enough of materials to do the action.";
 
-    private string greeting1 = "Greetings, my king! I'm your servant Sycophant and I will assist you! You, my king, must defend the kingdom and villagers from trolls and expand it!";
-    private string greeting2 = "To the right of the map, there is a panel displating the kingdom's resources. You can buy a new cell and rotate it by clicking on the bigger image of it for the best match on the map!";
-    private string greeting3 = "Castles bring you gold, farms bring you wheat. If you click on a castle, willage or farm you can collect resources. Roads also bring you gold if those are used by villagers.";
-    private string greeting4 = "With gold and wheat you can hire knights who will protect your kingdom from trolls and upgrate your castle. So, be wise, my king! Fill every cell on the map to win.";
+    private string[] greetings = {
+        "Greetings, my king! I'm your servant Sycophant and I will assist you! You, my king, must defend the kingdom and villagers from evil trolls and expand it!",
+        "To the left of the screen, there is a panel displating the kingdom's resources. You can buy a new cell and rotate it by clicking on the bigger image of it for the best match on the map!",
+        "Castles bring you gold, farms bring you wheat. If you click on a castle, willage or farm you can collect resources. Roads also bring you gold if those are used by villagers.",
+        "With gold and wheat you can hire knights who will protect your kingdom from trolls and upgrate your castle. So, be wise, my king! Fill every cell on the map to win."
+    };
 
-    private string[] greetings = new string[4];
     private int current_greeting = 0;
 
     private bool is_win = false;
@@ -78,11 +81,6 @@ public class GameController : MonoBehaviour
 
         free_cells_amount = fieldScript.width * fieldScript.height - 4;
 
-        greetings[0] = greeting1;
-        greetings[1] = greeting2;
-        greetings[2] = greeting3;
-        greetings[3] = greeting4;
-
         OpenOptionPanel();
 
         CloseBuyKnightsPanel();
@@ -92,6 +90,7 @@ public class GameController : MonoBehaviour
         CloseOkayPanel();
         CloseRoadOkayPanel();
         CloseUpgrateCastlePanel();
+        CloseSurePanel();
         CloseDude();
 
         WinPanel.gameObject.SetActive(false);
@@ -157,41 +156,17 @@ public class GameController : MonoBehaviour
     {
         x = index_i;
         y = index_j;
+        set_new_cell = cell;
+
         if ((sprite != null) && (fieldScript.cells[index_i, index_j].title == null))
         {
             free_cells_amount--;
-
-            Debug.Log("CLICK");
-            cell.GetComponent<Image>().sprite = sprite;
-            cell.GetComponent<Image>().transform.localEulerAngles = new Vector3(0, 0, 90 * new_cell.rotation);
-
-            EditCell();
-
-            fieldScript.dark_cells[index_i, index_j] = cell;
-            fieldScript.cells[index_i, index_j] = new_cell;
-            if (fieldScript.cells[index_i, index_j].destroyable)
-            {
-                fieldScript.ChangeCellTag(index_i, index_j, "Knight");
-            }
-
-            sprite = null;
-            new_cell.rotation = 0;
-            image.sprite = empty_sprite;
-            image.transform.localEulerAngles = new Vector3(0, 0, 0);
-
-            if (fieldScript.cells[index_i,index_j].type == "castle")
-            {
-                CreateVillager();
-            }
-
-            ClosingOfBuyingANewCell(true);
-
-            cellsScript.RandomCell();
-
-            if (free_cells_amount == 0)
-            {
-                ShowWinPanel();
-            }
+            SetNewCell();
+        }
+        else if ((sprite != null) && (fieldScript.cells[index_i, index_j].title != null))
+        {
+            OpenSurePanel();
+            //SetNewCell();
         }
         else if (sprite == null)
         {
@@ -206,6 +181,43 @@ public class GameController : MonoBehaviour
                 CloseCellPressedPanel();
             }
         }
+    }
+
+    public void SetNewCell()
+    {
+        Debug.Log("CLICK");
+        set_new_cell.GetComponent<Image>().sprite = sprite;
+        set_new_cell.GetComponent<Image>().transform.localEulerAngles = new Vector3(0, 0, 90 * new_cell.rotation);
+
+        EditCell();
+
+        fieldScript.dark_cells[x, y] = set_new_cell;
+        fieldScript.cells[x, y] = new_cell;
+        if (fieldScript.cells[x, y].destroyable)
+        {
+            fieldScript.ChangeCellTag(x, y, "Knight");
+        }
+
+        sprite = null;
+        new_cell.rotation = 0;
+        image.sprite = empty_sprite;
+        image.transform.localEulerAngles = new Vector3(0, 0, 0);
+
+        if (fieldScript.cells[x, y].type == "castle")
+        {
+            CreateVillager();
+        }
+
+        ClosingOfBuyingANewCell(true);
+
+        cellsScript.RandomCell();
+
+        if (free_cells_amount == 0)
+        {
+            ShowWinPanel();
+        }
+
+        CloseSurePanel();
     }
 
     public void CreateVillager()
@@ -347,7 +359,8 @@ public class GameController : MonoBehaviour
                 cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(true);
                 OpenRoadOkayPanel();
             }
-            else {
+            else
+            {
                 cellPressedPanel.GetComponent<CellPressedPanelScript>().claim_button.gameObject.SetActive(true);
                 OpenOkayPanel();
             }
@@ -515,6 +528,9 @@ public class GameController : MonoBehaviour
     {
         int next_lvl = fieldScript.cells[x, y].level + 1;
         Cell new_castle = fieldScript.FindCellByType("castle", next_lvl, 1, false);
+        new_castle.rotation = fieldScript.cells[x, y].rotation;
+        new_castle = EditRepairedCell(new_castle);
+        new_castle.coin_amount = fieldScript.cells[x, y].coin_amount;
 
         if (coin_amount - new_castle.cost_of_upgrate < 0)
         {
@@ -608,6 +624,16 @@ public class GameController : MonoBehaviour
     public void ShowLosePanel()
     {
         LosePanel.gameObject.SetActive(true);
+    }
+
+    public void OpenSurePanel()
+    {
+        SurePanel.SetActive(true);
+    }
+
+    public void CloseSurePanel()
+    {
+        SurePanel.SetActive(false);
     }
 
     private void Timer()

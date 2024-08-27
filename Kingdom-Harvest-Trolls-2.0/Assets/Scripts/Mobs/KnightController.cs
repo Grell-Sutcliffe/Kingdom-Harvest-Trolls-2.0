@@ -20,6 +20,8 @@ public class KnightController : MonoBehaviour
     private bool is_flipped = false;
     private bool is_dead = false;
 
+    private string targetTag = "Troll";
+
     private void Start()
     {
         current_health = max_health;
@@ -30,7 +32,31 @@ public class KnightController : MonoBehaviour
 
     private void Update()
     {
-        target = GameObject.FindGameObjectWithTag("Troll");
+        GameObject[] colliders = GameObject.FindGameObjectsWithTag(targetTag);
+        GameObject closestTarget = null;
+
+        if (colliders.Length > 0)
+        {
+            float closestDistance = Mathf.Infinity;
+
+            foreach (GameObject collider in colliders)
+            {
+                if (collider.gameObject.CompareTag(targetTag))
+                {
+                    float distance = Vector3.Distance(transform.position, collider.transform.position);
+
+                    if (distance < closestDistance)
+                    {
+                        closestTarget = collider;
+                        closestDistance = distance;
+                    }
+                }
+            }
+        }
+
+        target = closestTarget;
+
+        //target = GameObject.FindGameObjectWithTag("Troll");
 
         zoom = controller.zoom;
 

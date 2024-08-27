@@ -73,6 +73,15 @@ public class VillagerController : MonoBehaviour
     {
         zoom = controller.zoom;
 
+        if (fieldScript.cells[go_to_x, go_to_y].is_destroyed == false || fieldScript.cells[index_i, index_j].is_destroyed == false)
+        {
+            if (needs_help == true)
+            {
+                HideDialog();
+                needs_help = false;
+            }
+        }
+
         if ((index_i != go_to_x) || (index_j != go_to_y))
         {
             is_moving = true;
@@ -105,8 +114,11 @@ public class VillagerController : MonoBehaviour
 
     public void InTouch()
     {
-        int index = random.Next(0, in_touch.Length);
-        ShowDiaog(in_touch[index], 3f);
+        if (needs_help == false)
+        {
+            int index = random.Next(0, in_touch.Length);
+            ShowDiaog(in_touch[index], 3f);
+        }
     }
 
     private void InvokeFindWay()
@@ -218,7 +230,11 @@ public class VillagerController : MonoBehaviour
             go_to_x = ways[index].Item1;
             go_to_y = ways[index].Item2;
 
-            needs_help = false;
+            if (needs_help == true)
+            {
+                HideDialog();
+                needs_help = false;
+            }
         }
         else
         {
@@ -261,7 +277,7 @@ public class VillagerController : MonoBehaviour
 
     private void DieOrLive()
     {
-        if (fieldScript.cells[go_to_x, go_to_y].is_destroyed == true)
+        if (needs_help == true)
         {
             DeathVillager();
         }

@@ -18,6 +18,8 @@ public class TrollController : MonoBehaviour
 
     private bool is_flipped = false;
 
+    private string targetTag = "Knight";
+
     private void Start()
     {
         current_health = max_health;
@@ -28,7 +30,31 @@ public class TrollController : MonoBehaviour
 
     private void Update()
     {
-        target = GameObject.FindGameObjectWithTag("Knight");
+        GameObject[] colliders = GameObject.FindGameObjectsWithTag(targetTag);
+        GameObject closestTarget = null;
+
+        if (colliders.Length > 0)
+        {
+            float closestDistance = Mathf.Infinity;
+
+            foreach (GameObject collider in colliders)
+            {
+                if (collider.gameObject.CompareTag(targetTag))
+                {
+                    float distance = Vector3.Distance(transform.position, collider.transform.position);
+
+                    if (distance < closestDistance)
+                    {
+                        closestTarget = collider;
+                        closestDistance = distance;
+                    }
+                }
+            }
+        }
+
+        target = closestTarget;
+
+        //target = GameObject.FindGameObjectWithTag("Knight");
 
         if (target == null)
         {
