@@ -174,6 +174,11 @@ public class GameController : MonoBehaviour
             image.sprite = empty_sprite;
             image.transform.localEulerAngles = new Vector3(0, 0, 0);
 
+            if (fieldScript.cells[index_i,index_j].type == "castle")
+            {
+                fieldScript.CreateVillager(index_i, index_j);
+            }
+
             ClosingOfBuyingANewCell(true);
 
             cellsScript.RandomCell();

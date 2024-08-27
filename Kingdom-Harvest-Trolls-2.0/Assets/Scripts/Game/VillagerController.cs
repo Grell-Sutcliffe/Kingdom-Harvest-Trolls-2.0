@@ -42,6 +42,8 @@ public class VillagerController : MonoBehaviour
 
         zoomPanel = GameObject.Find("ZoomPanel");
 
+        transform.position = fieldScript.checks[index_i, index_j].transform.position;
+
         FindWay();
     }
 
@@ -92,11 +94,6 @@ public class VillagerController : MonoBehaviour
 
     private void Move()
     {
-        /*Vector2 coords = zoomPanel.transform.position;
-        float x = (float)(coords.x - (fieldScript.width / 2 + (fieldScript.width % 2 == 0 ? 0 : 0.5) - (go_to.y + 1) + 0.5) * fieldScript.cellSize.x) * zoom;
-        float y = (float)(coords.y + (fieldScript.height / 2 + (fieldScript.height % 2 == 0 ? 0 : 0.5) - (go_to.x + 1) + 0.5) * fieldScript.cellSize.y) * zoom;
-        Vector3 new_way = new Vector3(x, y, 0f);*/
-
         Vector3 new_way = fieldScript.checks[go_to_x, go_to_y].transform.position;
 
         Vector3 direction = new_way - transform.position;
@@ -118,6 +115,7 @@ public class VillagerController : MonoBehaviour
         direction.Normalize();
 
         transform.position += direction * speed * zoom * Time.deltaTime;
+        //transform.position = new_way;
     }
 
     private void FindWay()
@@ -164,11 +162,19 @@ public class VillagerController : MonoBehaviour
                 }
         }
 
-        int index = random.Next(0, ways.Length);
-        go_to_x = ways[index].Item1;
-        go_to_y = ways[index].Item2;
+        if (ways.Length > 0)
+        {
+            int index = random.Next(0, ways.Length);
+            go_to_x = ways[index].Item1;
+            go_to_y = ways[index].Item2;
+        }
+        else
+        {
+            go_to_x = index_i;
+            go_to_y = index_j;
+        }
 
-        Debug.Log($"moves from {index_i} {index_j} to {go_to_x} {go_to_y}");
+        //Debug.Log($"moves from {index_i} {index_j} to {go_to_x} {go_to_y}");
 
         System.Array.Resize(ref ways, 0);
     }

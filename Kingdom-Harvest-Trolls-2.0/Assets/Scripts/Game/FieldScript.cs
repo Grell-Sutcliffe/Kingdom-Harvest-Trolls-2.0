@@ -197,12 +197,15 @@ public class FieldScript : MonoBehaviour
 
     public void CreateVillager(int i, int j)
     {
-        i++;
+        /*i++;
         j++;
         Vector2 coords = zoomPanel.transform.position;
-        float x = (float)(coords.x - (width / 2 + (width % 2 == 0 ? 0 : 0.5) - j + 0.5) * cellSize.x);
+        float x = (float)(coords.x - (width / 2 + (width % 2 == 0 ? 0 : 0.5) - j + 0.5) * cellSize.x); 
         float y = (float)(coords.y + (height / 2 + (height % 2 == 0 ? 0 : 0.5) - i + 0.5) * cellSize.y);
-        zoomPanel.GetComponent<EnemySpawner>().VillagerSpawn(x, y, i - 1, j - 1);
+        zoomPanel.GetComponent<EnemySpawner>().VillagerSpawn(x, y, i - 1, j - 1);*/
+
+        Vector3 new_villager = checks[i, j].transform.position;
+        zoomPanel.GetComponent<EnemySpawner>().VillagerSpawn(new_villager, i, j);
     }
 
     private void InitDarkCell(int i, int j)
