@@ -42,7 +42,7 @@ public class VillagerController : MonoBehaviour
 
         zoomPanel = GameObject.Find("ZoomPanel");
 
-        transform.position = fieldScript.checks[index_i, index_j].transform.position;
+        //transform.position = fieldScript.checks[index_i, index_j].transform.position;
 
         FindWay();
     }
@@ -56,14 +56,18 @@ public class VillagerController : MonoBehaviour
             is_moving = true;
             Move();
 
-            if ((index_i == go_to_x) && (index_j == go_to_y))
+            /*if ((index_i == go_to_x) && (index_j == go_to_y))
             {
                 float time = UnityEngine.Random.Range(3f, 6f);
                 Invoke("FindWay", time);
-            }
+            }*/
         }
         else
         {
+            if (is_moving == true)
+            {
+                InvokeFindWay();
+            }
             is_moving = false;
         }
 
@@ -75,6 +79,12 @@ public class VillagerController : MonoBehaviour
                 DeathVillager();
             }
         }
+    }
+
+    private void InvokeFindWay()
+    {
+        float time = UnityEngine.Random.Range(3f, 6f);
+        Invoke("FindWay", time);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -172,6 +182,8 @@ public class VillagerController : MonoBehaviour
         {
             go_to_x = index_i;
             go_to_y = index_j;
+
+            InvokeFindWay();
         }
 
         //Debug.Log($"moves from {index_i} {index_j} to {go_to_x} {go_to_y}");

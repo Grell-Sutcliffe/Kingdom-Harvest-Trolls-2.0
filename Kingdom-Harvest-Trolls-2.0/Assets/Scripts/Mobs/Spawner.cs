@@ -74,7 +74,7 @@ namespace Game
         public void VillagerSpawn(Vector3 spawnPosition, int index_i, int index_j)
         {
             GameObject new_spawn = Instantiate(villagerPrefab, panel.transform);
-            //new_spawn.transform.position = spawnPosition;
+            new_spawn.transform.position = spawnPosition;
 
             new_spawn.GetComponent<VillagerController>().index_i = index_i;
             new_spawn.GetComponent<VillagerController>().index_j = index_j;

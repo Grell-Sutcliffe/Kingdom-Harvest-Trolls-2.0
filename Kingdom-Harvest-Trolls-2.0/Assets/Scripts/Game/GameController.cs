@@ -176,7 +176,7 @@ public class GameController : MonoBehaviour
 
             if (fieldScript.cells[index_i,index_j].type == "castle")
             {
-                fieldScript.CreateVillager(index_i, index_j);
+                CreateVillager();
             }
 
             ClosingOfBuyingANewCell(true);
@@ -201,6 +201,12 @@ public class GameController : MonoBehaviour
                 CloseCellPressedPanel();
             }
         }
+    }
+
+    public void CreateVillager()
+    {
+        Vector3 new_villager = fieldScript.checks[x, y].transform.position;
+        Zoom.GetComponent<EnemySpawner>().VillagerSpawn(new_villager, x, y);
     }
 
     public void EditCell()
