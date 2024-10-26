@@ -1968,7 +1968,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Max Tolmachev and Jenny Achtyamova's game
+  m_text: 'game-developer: Jenny Akhtiamova
+
+    game-designer: Max Tolmachev'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66933c571e73d86429458aa396401872, type: 2}
   m_sharedMaterial: {fileID: -2543673949282336241, guid: 66933c571e73d86429458aa396401872, type: 2}
@@ -2002,7 +2004,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
