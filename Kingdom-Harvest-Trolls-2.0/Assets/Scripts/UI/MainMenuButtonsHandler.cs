@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.UI
 {
@@ -9,5 +10,15 @@ namespace Game.UI
 
         public void ShowOptions() => _optionsMenu.SetActive(true);
         public void Quit() => Application.Quit();
+
+        public void Start()
+        {
+            _optionsMenu.SetActive(false);
+        }
+
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
     }
 }
