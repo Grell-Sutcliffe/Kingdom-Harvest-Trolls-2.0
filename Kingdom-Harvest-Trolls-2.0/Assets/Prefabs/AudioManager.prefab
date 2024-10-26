@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8586897029335788429}
   - component: {fileID: 135534241788265707}
-  - component: {fileID: 7021223687404100830}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +47,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -130,22 +129,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7021223687404100830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349106060600176381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c1e3ef3be57a2a4da59064da40f94c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioMixer: {fileID: 24100000, guid: a219a9f84964946478724852e0ef97db, type: 2}
-  _trackList:
-  - {fileID: 8300000, guid: cf9a6f4da53f60b4199ba3014cbe3f7a, type: 3}
-  - {fileID: 8300000, guid: 1567fc74183b21a4ba90a245c30d8767, type: 3}
 --- !u!1 &7869635288952756360
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UIElements;
 
 namespace Game
 {
     [RequireComponent(typeof(AudioSource))]
     public class AudioManager : MonoBehaviour
     {
+        System.Random random = new System.Random();
+
+        public GameObject SoundMaker;
+        private AudioSource _audioPlayer;
+        public GameObject[] sounds;
+
         public const string MasterVolume = "Master";
         public const string MusicVolume = "Music";
         public const string SFXVolume = "SFX";
@@ -15,24 +22,38 @@ namespace Game
         [SerializeField] private AudioMixer _audioMixer;
 
         [SerializeField] private List<AudioClip> _trackList;
+        int track_counter = 0;
         private int _currentTrackIndex;
-
-        private AudioSource _audioPlayer;
 
         private void Awake()
         {
-            _audioPlayer = GetComponent<AudioSource>();
+            sounds = GameObject.FindGameObjectsWithTag("Sound");
+            if (sounds.Length == 0)
+            {
+                SoundMaker = Instantiate(SoundMaker);
+                SoundMaker.name = "SoundMaker";
+                DontDestroyOnLoad(SoundMaker.gameObject);
+            }
+            else
+            {
+                SoundMaker = GameObject.Find("SoundMaker");
+            }
+
+            //_audioPlayer = GetComponent<AudioSource>();
         }
 
         private void Start()
         {
+            _audioPlayer = SoundMaker.GetComponent<AudioSource>();
+
             Initialize();
             PlayNextTrack();
+            track_counter = _trackList.Count;
         }
 
         private void Initialize()
         {
-            ShuffleTracks();
+            //ShuffleTracks();
             _currentTrackIndex = 0;
             _audioPlayer.pitch = 1;
         }
@@ -50,8 +71,9 @@ namespace Game
             yield return new WaitForSeconds(delay);
             if (_currentTrackIndex >= _trackList.Count - 1)
             {
-                ShuffleTracks();
-                _currentTrackIndex = 0;
+                //ShuffleTracks();
+                _currentTrackIndex++;
+                _currentTrackIndex %= track_counter;
             }
             else
             {
@@ -60,7 +82,7 @@ namespace Game
             PlayNextTrack();
         }
 
-        private void ShuffleTracks()
+        /*private void ShuffleTracks()
         {
             System.Random random = new();
             for (int n = _trackList.Count - 1; n > 1; n--)
@@ -68,7 +90,7 @@ namespace Game
                 int k = random.Next(n + 1);
                 (_trackList[n], _trackList[k]) = (_trackList[k], _trackList[n]);
             }
-        }
+        }*/
 
         public void OnMasterVolumeChanged(System.Single masterLevel)
         {

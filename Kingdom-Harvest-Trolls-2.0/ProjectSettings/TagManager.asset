@@ -11,6 +11,7 @@ TagManager:
   - TrollSword
   - Villager
   - VillagerArea
+  - Sound
   layers:
   - Default
   - TransparentFX
