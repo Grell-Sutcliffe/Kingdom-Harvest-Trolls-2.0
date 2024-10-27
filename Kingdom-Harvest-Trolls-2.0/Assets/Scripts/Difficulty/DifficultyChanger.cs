@@ -16,17 +16,22 @@ namespace Game.UI
             IEnumerable<string> difficultyNames =
                 from difficulty in _difficulties
                 select difficulty.Name;
-
             _difficultyDropdown.ClearOptions();
             _difficultyDropdown.AddOptions(difficultyNames.ToList());
             _difficultyDropdown.RefreshShownValue();
+
             _difficultyDropdown.value = SaveLoadSystem.LoadDifficulty();
             DifficultyManager.Instance.SetDifficulty(_difficulties[_difficultyDropdown.value]);
         }
 
+        private void Awake()
+        {
+            _difficultyDropdown.value = SaveLoadSystem.LoadDifficulty();
+        }
+
         public void SaveDifficulty()
         {
-            DifficultyManager.Instance.SetDifficulty(_difficulties[_difficultyDropdown.value]);
+            //DifficultyManager.Instance.SetDifficulty(_difficulties[_difficultyDropdown.value]);
             SaveLoadSystem.SaveDifficulty(_difficultyDropdown.value);
             Debug.Log($"{_difficultyDropdown.value}");
         }
