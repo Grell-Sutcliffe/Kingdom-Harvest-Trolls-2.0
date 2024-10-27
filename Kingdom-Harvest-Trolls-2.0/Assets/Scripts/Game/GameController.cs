@@ -132,7 +132,9 @@ public class GameController : MonoBehaviour
     {
         sprite = cell.GetComponent<Image>().sprite;
         image.sprite = sprite;
-
+        image.transform.localEulerAngles = new Vector3(0, 0, 0);
+        last_rotation = new Vector3(0, 0, 0);
+        
         for (int i = 0; i < cellsScript.all_cells.Length; i++)
         {
             if (cellsScript.all_cells[i].sprite == sprite)
