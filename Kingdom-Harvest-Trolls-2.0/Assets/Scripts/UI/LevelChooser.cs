@@ -11,6 +11,7 @@ namespace Game.UI
         [SerializeField] private string choosenLevel;
         public void LoadChosenLevel()
         {
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioManager>().ChangePlaylist();
             SceneManager.LoadScene(choosenLevel);
         }
     }

@@ -2,8 +2,10 @@ using Game;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -54,6 +56,11 @@ public class GameController : MonoBehaviour
 
     public Image image;
     public Cell new_cell;
+
+    private Sprite cell_befre_fit = null;
+    private int last_ind_i = -1;
+    private int last_ind_j = -1;
+    private Vector3 last_rotation = new Vector3(0, 0, 0);
 
     private int x, y;
     private GameObject set_new_cell;
@@ -114,6 +121,11 @@ public class GameController : MonoBehaviour
             OpenDude(greetings[current_greeting]);
             current_greeting++;
         }
+
+        if (sprite != null)
+        {
+            CellFitter();
+        }
     }
 
     public void NewCellOnClick(GameObject cell)
@@ -143,6 +155,7 @@ public class GameController : MonoBehaviour
             IncreaseCoinAmount(-cost_of_new_cell);
 
             ClosingOfBuyingANewCell(false);
+            CloseCellPressedPanel();
         }
     }
 
@@ -185,6 +198,17 @@ public class GameController : MonoBehaviour
 
     public void SetNewCell()
     {
+        if (x != last_ind_i || y != last_ind_j)
+        {
+            if (last_ind_i != -1 && last_ind_j != -1)
+            {
+                fieldScript.dark_cells[last_ind_i, last_ind_j].GetComponent<Image>().sprite = cell_befre_fit;
+                fieldScript.dark_cells[last_ind_i, last_ind_j].GetComponent<Image>().transform.localEulerAngles = last_rotation;
+            }
+        }
+        last_ind_i = -1;
+        last_ind_j = -1;
+
         Debug.Log("CLICK");
         set_new_cell.GetComponent<Image>().sprite = sprite;
         set_new_cell.GetComponent<Image>().transform.localEulerAngles = new Vector3(0, 0, 90 * new_cell.rotation);
@@ -640,5 +664,55 @@ public class GameController : MonoBehaviour
     {
         fieldScript.IncreaseTimer();
         UpdateClaimPanel();
+    }
+
+    private void CellFitter()
+    {
+        Vector2 coords = Zoom.transform.position;
+        Vector3 mouse_position = Input.mousePosition;
+        float zoom = GameObject.FindGameObjectWithTag("Canvas").GetComponent<MouseUIController>().zoom;
+        float mouse_x = mouse_position.x;
+        float mouse_y = mouse_position.y;
+        double j = (fieldScript.width * zoom) / 2 + (fieldScript.width % 2 == 0 ? 0 : 0.5) - ((coords.x - mouse_x) / (fieldScript.cellSize.x * zoom));
+        double i = (fieldScript.height * zoom) / 2 + (fieldScript.height % 2 == 0 ? 0 : 0.5) - ((mouse_y - coords.y) / (fieldScript.cellSize.y * zoom));
+        float delta_j = (fieldScript.width / 2) * (zoom - 1);
+        float delta_i = (fieldScript.height / 2) * (zoom - 1);
+        //i /= zoom;
+        //j /= zoom;
+        i -= delta_i;
+        j -= delta_j;
+        //float x = (float)(coords.x - (width / 2 + (width % 2 == 0 ? 0 : 0.5) - j + 0.5) * cellSize.x);
+        //float y = (float)(coords.y + (height / 2 + (height % 2 == 0 ? 0 : 0.5) - i + 0.5) * cellSize.y);
+        int ind_i = (int)i;
+        int ind_j = (int)j;
+
+        if ((ind_i >= 0 && ind_i < fieldScript.height) && (ind_j >= 0 && ind_j < fieldScript.width))
+        {
+            if (ind_i != last_ind_i || ind_j != last_ind_j)
+            {
+                if (last_ind_i != -1 && last_ind_j != -1)
+                {
+                    fieldScript.dark_cells[last_ind_i, last_ind_j].GetComponent<Image>().sprite = cell_befre_fit;
+                    fieldScript.dark_cells[last_ind_i, last_ind_j].GetComponent<Image>().transform.localEulerAngles = last_rotation;
+                }
+
+                cell_befre_fit = fieldScript.dark_cells[ind_i, ind_j].GetComponent<Image>().sprite;
+                last_rotation = fieldScript.dark_cells[ind_i, ind_j].GetComponent<Image>().transform.localEulerAngles;
+                last_ind_i = ind_i;
+                last_ind_j = ind_j;
+            }
+            fieldScript.dark_cells[ind_i, ind_j].GetComponent<Image>().sprite = image.sprite;
+            fieldScript.dark_cells[ind_i, ind_j].GetComponent<Image>().transform.localEulerAngles = new Vector3(0, 0, 90 * new_cell.rotation);
+        }
+        else
+        {
+            if (last_ind_i != -1 && last_ind_j != -1)
+            {
+                fieldScript.dark_cells[last_ind_i, last_ind_j].GetComponent<Image>().sprite = cell_befre_fit;
+            }
+
+            last_ind_i = -1;
+            last_ind_j = -1;
+        }
     }
 }

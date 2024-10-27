@@ -11,6 +11,8 @@ namespace Game
     {
         System.Random random = new System.Random();
 
+        public bool game_started = false;
+
         public GameObject SoundMaker;
         private AudioSource _audioPlayer;
         public GameObject[] sounds;
@@ -21,8 +23,10 @@ namespace Game
 
         [SerializeField] private AudioMixer _audioMixer;
 
-        [SerializeField] private List<AudioClip> _trackList;
-        int track_counter = 0;
+        [SerializeField] private List<AudioClip> _trackList_menu;
+        [SerializeField] private List<AudioClip> _trackList_battle;
+        private int menu_track_counter = 0;
+        private int battle_track_counter = 0;
         private int _currentTrackIndex;
 
         private void Awake()
@@ -48,7 +52,8 @@ namespace Game
 
             Initialize();
             PlayNextTrack();
-            track_counter = _trackList.Count;
+            menu_track_counter = _trackList_menu.Count;
+            battle_track_counter = _trackList_battle.Count;
         }
 
         private void Initialize()
@@ -58,10 +63,25 @@ namespace Game
             _audioPlayer.pitch = 1;
         }
 
+        public void ChangePlaylist()
+        {
+            game_started = true;
+            PlayNextTrack();
+        }
+
         /// <summary> Проигрывание следующего трека без задержки.</summary>
         private void PlayNextTrack()
         {
-            _audioPlayer.clip = _trackList[_currentTrackIndex];
+            if (game_started) //battle on
+            {
+                //_currentTrackIndex = random.Next(0, _trackList_battle.Count);
+                _audioPlayer.clip = _trackList_battle[_currentTrackIndex];
+            }
+            else
+            {
+                //_currentTrackIndex = random.Next(0, _trackList_menu.Count);
+                _audioPlayer.clip = _trackList_menu[_currentTrackIndex];
+            }
             _audioPlayer.Play();
             StartCoroutine(PlayNextTrackAfterDelay(_audioPlayer.clip.length));
         }
@@ -69,15 +89,15 @@ namespace Game
         private IEnumerator PlayNextTrackAfterDelay(float delay)
         {
             yield return new WaitForSeconds(delay);
-            if (_currentTrackIndex >= _trackList.Count - 1)
+            if (game_started)
             {
-                //ShuffleTracks();
                 _currentTrackIndex++;
-                _currentTrackIndex %= track_counter;
+                _currentTrackIndex %= battle_track_counter;
             }
             else
             {
                 _currentTrackIndex++;
+                _currentTrackIndex %= menu_track_counter;
             }
             PlayNextTrack();
         }

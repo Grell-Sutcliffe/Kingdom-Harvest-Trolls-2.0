@@ -144,6 +144,9 @@ public class FieldScript : MonoBehaviour
         for (int i = 0; i < height; i++)
             for (int j = 0; j < width; j++)
             {
+                //fit_cells[i, j] = Instantiate(dark_cell_prefab, Vector3.zero, Quaternion.identity, transform);
+                //fit_cells[i, j].GetComponent<Image>().sprite = gameController.empty_sprite;
+
                 InitDarkCell(i, j);
 
                 dark_cells[i, j].gameObject.GetComponent<AddCellScript>().index_i = i;
