@@ -144,6 +144,9 @@ public class VillagerController : MonoBehaviour
 
     private void Move()
     {
+        fieldScript.villager_here[go_to_x, go_to_y] = true;
+        fieldScript.villager_here[index_i, index_j] = false;
+
         Vector3 new_way = fieldScript.checks[go_to_x, go_to_y].transform.position;
 
         Vector3 direction = new_way - transform.position;

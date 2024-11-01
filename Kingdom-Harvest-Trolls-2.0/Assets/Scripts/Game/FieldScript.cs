@@ -40,6 +40,7 @@ public class FieldScript : MonoBehaviour
 
     public GameObject[,] dark_cells;
     public Cell[,] cells;
+    public bool[,] villager_here;
     //bool[,] is_opened;
 
     System.Random random = new System.Random();
@@ -137,6 +138,7 @@ public class FieldScript : MonoBehaviour
 
     public void StartNewGame()
     {
+        villager_here = new bool[height, width];
         dark_cells = new GameObject[height, width];
         cells = new Cell[height, width];
         checks = new GameObject[height, width];

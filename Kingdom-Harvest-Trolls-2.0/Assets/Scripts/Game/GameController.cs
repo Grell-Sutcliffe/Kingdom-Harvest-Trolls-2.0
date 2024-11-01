@@ -174,27 +174,34 @@ public class GameController : MonoBehaviour
         y = index_j;
         set_new_cell = cell;
 
-        if ((sprite != null) && (fieldScript.cells[index_i, index_j].title == null))
+        if (fieldScript.villager_here[x, y])
         {
-            free_cells_amount--;
-            SetNewCell();
+            OpenDude("My king, you can't rebuild a cell with a villager on it");
         }
-        else if ((sprite != null) && (fieldScript.cells[index_i, index_j].title != null))
+        else
         {
-            OpenSurePanel();
-            //SetNewCell();
-        }
-        else if (sprite == null)
-        {
-            fieldScript.OnCellClick(index_i, index_j);
-            if (fieldScript.cells[index_i, index_j].destroyable)
+            if ((sprite != null) && (fieldScript.cells[index_i, index_j].title == null))
             {
-                OpenCellPressedPanel(index_i, index_j);
-                UpdateClaimPanel();
+                free_cells_amount--;
+                SetNewCell();
             }
-            else
+            else if ((sprite != null) && (fieldScript.cells[index_i, index_j].title != null))
             {
-                CloseCellPressedPanel();
+                OpenSurePanel();
+                //SetNewCell();
+            }
+            else if (sprite == null)
+            {
+                fieldScript.OnCellClick(index_i, index_j);
+                if (fieldScript.cells[index_i, index_j].destroyable)
+                {
+                    OpenCellPressedPanel(index_i, index_j);
+                    UpdateClaimPanel();
+                }
+                else
+                {
+                    CloseCellPressedPanel();
+                }
             }
         }
     }
