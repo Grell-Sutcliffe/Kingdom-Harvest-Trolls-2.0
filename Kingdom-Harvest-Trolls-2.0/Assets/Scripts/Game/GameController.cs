@@ -64,6 +64,7 @@ public class GameController : MonoBehaviour
 
     private int x, y;
     private GameObject set_new_cell;
+    private bool need_to_fit_cell = true;
 
     private string not_enougth = "My lord, you do not have enough of materials to do the action.";
 
@@ -654,11 +655,13 @@ public class GameController : MonoBehaviour
 
     public void OpenSurePanel()
     {
+        need_to_fit_cell = false;
         SurePanel.SetActive(true);
     }
 
     public void CloseSurePanel()
     {
+        need_to_fit_cell = true;
         SurePanel.SetActive(false);
     }
 
@@ -688,7 +691,7 @@ public class GameController : MonoBehaviour
         int ind_i = (int)i;
         int ind_j = (int)j;
 
-        if ((ind_i >= 0 && ind_i < fieldScript.height) && (ind_j >= 0 && ind_j < fieldScript.width))
+        if ((ind_i >= 0 && ind_i < fieldScript.height) && (ind_j >= 0 && ind_j < fieldScript.width) && need_to_fit_cell)
         {
             if (ind_i != last_ind_i || ind_j != last_ind_j)
             {
