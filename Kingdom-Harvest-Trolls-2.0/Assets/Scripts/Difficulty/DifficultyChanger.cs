@@ -31,7 +31,7 @@ namespace Game.UI
 
         public void SaveDifficulty()
         {
-            //DifficultyManager.Instance.SetDifficulty(_difficulties[_difficultyDropdown.value]);
+            DifficultyManager.Instance.SetDifficulty(_difficulties[_difficultyDropdown.value]);
             SaveLoadSystem.SaveDifficulty(_difficultyDropdown.value);
             Debug.Log($"{_difficultyDropdown.value}");
         }
