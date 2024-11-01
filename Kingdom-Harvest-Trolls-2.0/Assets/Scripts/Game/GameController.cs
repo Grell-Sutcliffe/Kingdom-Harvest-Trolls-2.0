@@ -174,7 +174,7 @@ public class GameController : MonoBehaviour
         y = index_j;
         set_new_cell = cell;
 
-        if (fieldScript.villager_here[x, y])
+        if (fieldScript.villager_here[x, y] && sprite != null)
         {
             OpenDude("My king, you can't rebuild a cell with a villager on it");
         }
