@@ -134,7 +134,6 @@ public class GameController : MonoBehaviour
         sprite = cell.GetComponent<Image>().sprite;
         image.sprite = sprite;
         image.transform.localEulerAngles = new Vector3(0, 0, 0);
-        last_rotation = new Vector3(0, 0, 0);
         
         for (int i = 0; i < cellsScript.all_cells.Length; i++)
         {
@@ -208,6 +207,8 @@ public class GameController : MonoBehaviour
 
     public void SetNewCell()
     {
+        last_rotation = new Vector3(0, 0, 0);
+
         if (x != last_ind_i || y != last_ind_j)
         {
             if (last_ind_i != -1 && last_ind_j != -1)
@@ -718,13 +719,16 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            if (last_ind_i != -1 && last_ind_j != -1)
+            if (need_to_fit_cell)
             {
-                fieldScript.dark_cells[last_ind_i, last_ind_j].GetComponent<Image>().sprite = cell_befre_fit;
-            }
+                if (last_ind_i != -1 && last_ind_j != -1)
+                {
+                    fieldScript.dark_cells[last_ind_i, last_ind_j].GetComponent<Image>().sprite = cell_befre_fit;
+                }
 
-            last_ind_i = -1;
-            last_ind_j = -1;
+                last_ind_i = -1;
+                last_ind_j = -1;
+            }
         }
     }
 }
