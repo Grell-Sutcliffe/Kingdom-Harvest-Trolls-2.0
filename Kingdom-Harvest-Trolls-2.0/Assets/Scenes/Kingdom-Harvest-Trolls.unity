@@ -8839,6 +8839,48 @@ MonoBehaviour:
     is_just_road: 1
     rotation: 0
     time_for_peak: 60
+  - sprite: {fileID: 21300000, guid: 4f19d006ca898d94a8dca318b923dc66, type: 3}
+    type: full_village
+    destroyable: 1
+    title: Village
+    down: village
+    right: village
+    up: village
+    left: village
+    coin_amount: 0
+    wheat_amount: 0
+    villager_amount: 0
+    interval: 10
+    is_destroyed: 0
+    cost_of_upgrate: 80
+    coin_per_time: 80
+    wheat_per_time: 0
+    level: 0
+    count_of_road: 0
+    is_just_road: 0
+    rotation: 0
+    time_for_peak: 60
+  - sprite: {fileID: 21300000, guid: 36e4b880400c8954db6f19ffa5e2ae84, type: 3}
+    type: full_village
+    destroyable: 1
+    title: Village
+    down: village
+    right: village
+    up: village
+    left: village
+    coin_amount: 0
+    wheat_amount: 0
+    villager_amount: 0
+    interval: -1
+    is_destroyed: 1
+    cost_of_upgrate: 80
+    coin_per_time: 80
+    wheat_per_time: 0
+    level: 0
+    count_of_road: 0
+    is_just_road: 0
+    rotation: 0
+    time_for_peak: 60
   choose_cells: []
   cellChoose:
   - sprite: {fileID: 0}
