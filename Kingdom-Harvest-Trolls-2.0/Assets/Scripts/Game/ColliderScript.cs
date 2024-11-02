@@ -28,6 +28,9 @@ public class ColliderScript : MonoBehaviour
             {
                 if (collision.gameObject.tag == "Troll")
                 {
+                    Debug.Log($"CRUSH {index_i} {index_j}, " +
+                        $"{collision.gameObject.transform.position.x}" +
+                        $"{collision.gameObject.transform.position.y}");
                     DestroyCell();
                 }
             }

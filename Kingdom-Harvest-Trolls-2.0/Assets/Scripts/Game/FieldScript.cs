@@ -154,6 +154,8 @@ public class FieldScript : MonoBehaviour
                 dark_cells[i, j].gameObject.GetComponent<AddCellScript>().index_i = i;
                 dark_cells[i, j].gameObject.GetComponent<AddCellScript>().index_j = j;
 
+                checks[i, j].gameObject.GetComponent<ColliderScript>().index_i = i;
+                checks[i, j].gameObject.GetComponent<ColliderScript>().index_j = j;
 
                 checks[i, j].gameObject.GetComponent<ColliderScript>().index_i = i;
                 checks[i, j].gameObject.GetComponent<ColliderScript>().index_j = j;
