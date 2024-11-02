@@ -287,5 +287,4 @@ public class FieldScript : MonoBehaviour
     {
         height *= (int)multiplier;
     }
-
 }

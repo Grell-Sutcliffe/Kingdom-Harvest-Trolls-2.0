@@ -87,7 +87,7 @@ public class GameController : MonoBehaviour
         fieldScript = Field.GetComponent<FieldScript>();
         cellsScript = Field.GetComponent<CellsScript>();
 
-        free_cells_amount = fieldScript.width * fieldScript.height - 4;
+        free_cells_amount = fieldScript.width * fieldScript.height - 5;
 
         OpenOptionPanel();
 
@@ -724,6 +724,7 @@ public class GameController : MonoBehaviour
                 if (last_ind_i != -1 && last_ind_j != -1)
                 {
                     fieldScript.dark_cells[last_ind_i, last_ind_j].GetComponent<Image>().sprite = cell_befre_fit;
+                    fieldScript.dark_cells[last_ind_i, last_ind_j].GetComponent<Image>().transform.localEulerAngles = last_rotation;
                 }
 
                 last_ind_i = -1;
