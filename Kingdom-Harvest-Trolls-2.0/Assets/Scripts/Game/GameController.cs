@@ -656,6 +656,11 @@ public class GameController : MonoBehaviour
         WinPanel.gameObject.SetActive(true);
     }
 
+    public void CloseWinPanel()
+    {
+        WinPanel.gameObject.SetActive(false);
+    }
+
     public void ShowLosePanel()
     {
         LosePanel.gameObject.SetActive(true);
