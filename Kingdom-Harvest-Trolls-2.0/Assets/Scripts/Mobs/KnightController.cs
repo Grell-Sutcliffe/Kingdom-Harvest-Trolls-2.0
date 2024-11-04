@@ -20,7 +20,7 @@ public class KnightController : MonoBehaviour
     private bool is_flipped = false;
     private bool is_dead = false;
 
-    private string targetTag = "Troll";
+    //private string targetTag = "Troll";
 
     private void Start()
     {
@@ -28,10 +28,13 @@ public class KnightController : MonoBehaviour
 
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         controller = GameObject.FindGameObjectWithTag("Canvas").GetComponent<MouseUIController>();
+
+        target = null;
     }
 
     private void Update()
     {
+        /*
         GameObject[] colliders = GameObject.FindGameObjectsWithTag(targetTag);
         GameObject closestTarget = null;
 
@@ -55,6 +58,7 @@ public class KnightController : MonoBehaviour
         }
 
         target = closestTarget;
+        */
 
         //target = GameObject.FindGameObjectWithTag("Troll");
 

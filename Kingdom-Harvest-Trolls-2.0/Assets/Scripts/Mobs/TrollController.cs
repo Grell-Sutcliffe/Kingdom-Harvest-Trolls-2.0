@@ -5,8 +5,11 @@ using UnityEngine;
 public class TrollController : MonoBehaviour
 {
     public GameObject target;
+    public GameObject[] enemies;
+    public GameObject closestKnight1;
+    public GameObject closestKnight2;
     private MouseUIController controller;
-    GameController gameController;
+    private GameController gameController;
 
     public int max_health = 50;
     private int current_health;
@@ -18,7 +21,8 @@ public class TrollController : MonoBehaviour
 
     private bool is_flipped = false;
 
-    private string targetTag = "Knight";
+    private string targetTag = "Village";
+    private string enemyTag = "Knight";
 
     private void Start()
     {
@@ -26,33 +30,35 @@ public class TrollController : MonoBehaviour
 
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         controller = GameObject.FindGameObjectWithTag("Canvas").GetComponent<MouseUIController>();
+
+        enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        closestKnight1 = FindClosestObject(enemies);
+        closestKnight2 = FindClosestObject(enemies);
     }
 
     private void Update()
     {
         GameObject[] colliders = GameObject.FindGameObjectsWithTag(targetTag);
-        GameObject closestTarget = null;
 
-        if (colliders.Length > 0)
+        target = FindClosestObject(colliders);
+
+        if (closestKnight1 == null)
         {
-            float closestDistance = Mathf.Infinity;
-
-            foreach (GameObject collider in colliders)
-            {
-                if (collider.gameObject.CompareTag(targetTag))
-                {
-                    float distance = Vector3.Distance(transform.position, collider.transform.position);
-
-                    if (distance < closestDistance)
-                    {
-                        closestTarget = collider;
-                        closestDistance = distance;
-                    }
-                }
-            }
+            closestKnight1 = FindClosestKnight();
+        }
+        if (closestKnight1 != null)
+        {
+            closestKnight1.GetComponent<KnightController>().target = gameObject;
         }
 
-        target = closestTarget;
+        if (closestKnight2 == null)
+        {
+            closestKnight2 = FindClosestKnight();
+        }
+        if (closestKnight2 != null)
+        {
+            closestKnight2.GetComponent<KnightController>().target = gameObject;
+        }
 
         //target = GameObject.FindGameObjectWithTag("Knight");
 
@@ -72,6 +78,59 @@ public class TrollController : MonoBehaviour
         {
             DeathTroll();
         }
+    }
+
+    private GameObject FindClosestKnight()
+    {
+        enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        GameObject closestTarget = null;
+
+        if (enemies.Length > 0)
+        {
+            float closestDistance = Mathf.Infinity;
+
+            foreach (GameObject obj in enemies)
+            {
+                if (obj.GetComponent<KnightController>().target == null)
+                {
+                    float distance = Vector3.Distance(transform.position, obj.transform.position);
+                    
+                    if (distance < closestDistance)
+                    {
+                        closestTarget = obj;
+                        closestDistance = distance;
+                    }
+                }
+            }
+        }
+
+        return closestTarget;
+    }
+
+    private GameObject FindClosestObject(GameObject[] list)
+    {
+        GameObject closestTarget = null;
+
+        if (list.Length > 0)
+        {
+            float closestDistance = Mathf.Infinity;
+
+            foreach (GameObject obj in list)
+            {
+                if (obj.gameObject.CompareTag(targetTag))
+                {
+                    float distance = Vector3.Distance(transform.position, obj.transform.position);
+
+                    if (distance < closestDistance)
+                    {
+                        closestTarget = obj;
+                        closestDistance = distance;
+                    }
+                }
+            }
+        }
+
+        return closestTarget;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -141,7 +200,7 @@ public class TrollController : MonoBehaviour
 
     private void PrepareLosePanel()
     {
-        target = GameObject.FindGameObjectWithTag("Knight");
+        target = GameObject.FindGameObjectWithTag(targetTag);
 
         if (target == null)
         {

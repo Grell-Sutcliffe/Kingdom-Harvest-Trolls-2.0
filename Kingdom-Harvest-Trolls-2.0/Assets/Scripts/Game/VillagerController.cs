@@ -114,6 +114,7 @@ public class VillagerController : MonoBehaviour
 
     public void InTouch()
     {
+        CancelInvoke("HideDialog");
         if (needs_help == false)
         {
             int index = random.Next(0, in_touch.Length);
@@ -252,6 +253,7 @@ public class VillagerController : MonoBehaviour
                 }
 
                 needs_help = true;
+                CancelInvoke("HideDialog");
             }
 
             InvokeFindWay();

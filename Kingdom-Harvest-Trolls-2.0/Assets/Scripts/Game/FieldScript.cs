@@ -181,7 +181,7 @@ public class FieldScript : MonoBehaviour
         Cell cell = FindCellByType("castle", 0, 1, false);
         cells[castle_x, castle_y] = cell;
         dark_cells[castle_x, castle_y].GetComponent<Image>().sprite = cell.sprite;
-        ChangeCellTag(castle_x, castle_y, "Knight");
+        ChangeCellTag(castle_x, castle_y, "Village");
 
         first_castle_x = castle_x;
         first_castle_y = castle_y;
@@ -190,17 +190,17 @@ public class FieldScript : MonoBehaviour
         cell = FindCellByType("quater_village", 0, 0, false);
         cells[castle_x, castle_y + 1] = cell;
         dark_cells[castle_x, castle_y + 1].GetComponent<Image>().sprite = cell.sprite;
-        ChangeCellTag(castle_x, castle_y + 1, "Knight");
+        ChangeCellTag(castle_x, castle_y + 1, "Village");
 
         cell = FindCellByType("quater_village", 0, 2, false);
         cells[castle_x - 1, castle_y] = cell;
         dark_cells[castle_x - 1, castle_y].GetComponent<Image>().sprite = cell.sprite;
-        ChangeCellTag(castle_x - 1, castle_y, "Knight");
+        ChangeCellTag(castle_x - 1, castle_y, "Village");
 
         cell = FindCellByType("wheat", 0, 0, false);
         cells[castle_x, castle_y - 1] = cell;
         dark_cells[castle_x, castle_y - 1].GetComponent<Image>().sprite = cell.sprite;
-        ChangeCellTag(castle_x, castle_y - 1, "Knight");
+        ChangeCellTag(castle_x, castle_y - 1, "Village");
 
         cell = FindCellByType("road", 4, 4, false);
         cells[castle_x + 1, castle_y] = cell;

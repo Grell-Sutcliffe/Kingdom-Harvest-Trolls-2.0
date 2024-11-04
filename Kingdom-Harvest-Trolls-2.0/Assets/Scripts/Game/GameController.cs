@@ -230,7 +230,7 @@ public class GameController : MonoBehaviour
         fieldScript.cells[x, y] = new_cell;
         if (fieldScript.cells[x, y].destroyable)
         {
-            fieldScript.ChangeCellTag(x, y, "Knight");
+            fieldScript.ChangeCellTag(x, y, "Village");
         }
 
         sprite = null;
@@ -550,7 +550,7 @@ public class GameController : MonoBehaviour
             IncreaseCoinAmount(-new_cell.cost_of_upgrate);
             UpgrateCellInfo(x, y, new_cell);
 
-            fieldScript.ChangeCellTag(x, y, "Knight");
+            fieldScript.ChangeCellTag(x, y, "Village");
 
             UpdateUpgratePanelInfo();
 

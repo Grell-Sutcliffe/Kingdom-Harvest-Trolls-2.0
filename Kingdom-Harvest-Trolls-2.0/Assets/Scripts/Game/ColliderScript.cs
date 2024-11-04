@@ -22,11 +22,12 @@ public class ColliderScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Villager")
+        Debug.Log($"SHIT HAPPENS {collision.gameObject.name}");
+        if ((collision.gameObject.tag != "Villager") && (collision.gameObject.tag != "Knight"))
         {
-            if ((fieldScript.cells[index_i, index_j].destroyable) && (fieldScript.cells[index_i, index_j].is_destroyed == false))
+            if (collision.gameObject.tag == "Troll")
             {
-                if (collision.gameObject.tag == "Troll")
+                if ((fieldScript.cells[index_i, index_j].destroyable) && (fieldScript.cells[index_i, index_j].is_destroyed == false))
                 {
                     Debug.Log($"CRUSH {index_i} {index_j}, " +
                         $"{collision.gameObject.transform.position.x}" +
@@ -74,11 +75,11 @@ public class ColliderScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Villager")
+        if ((collision.gameObject.tag != "Villager") && (collision.gameObject.tag != "Knight"))
         {
-            if (fieldScript.cells[index_i, index_j].destroyable)
+            if (collision.gameObject.tag == "Troll")
             {
-                if (collision.gameObject.tag == "Troll")
+                if (fieldScript.cells[index_i, index_j].destroyable)
                 {
                     Cell cell = fieldScript.cells[index_i, index_j];
                     Cell new_cell;
@@ -96,7 +97,7 @@ public class ColliderScript : MonoBehaviour
 
                         fieldScript.ChangeCellTag(index_i, index_j, "Untagged");
                     }
-                    else if ((cell.is_destroyed == false) && (fieldScript.checks[index_i, index_j].tag == "Knight"))
+                    else if ((cell.is_destroyed == false) && (fieldScript.checks[index_i, index_j].tag == "Village"))
                     {
                         DestroyCell();
                     }
@@ -109,6 +110,6 @@ public class ColliderScript : MonoBehaviour
 
     private void CastleSecondChance()
     {
-        fieldScript.ChangeCellTag(index_i, index_j, "Knight");
+        fieldScript.ChangeCellTag(index_i, index_j, "Village");
     }
 }
