@@ -22,6 +22,8 @@ namespace Game
         private Vector3 knightAreaMin; // ћинимальна€ позици€ спавна (левый нижний угол)
         private Vector3 knightAreaMax; // ћаксимальна€ позици€ спавна (правый верхний угол)
 
+        public bool need_to_spawn_troll = false;
+
         void Start()
         {
             trollAreaMin = trollPointDownLeft.transform.position;
@@ -34,14 +36,17 @@ namespace Game
 
         private void TrollSpawn()
         {
-            Vector3 spawnPosition = new Vector3(
-                Random.Range(trollAreaMin.x, trollAreaMax.x),
-                Random.Range(trollAreaMin.y, trollAreaMax.y),
-                0
-            );
+            if (need_to_spawn_troll)
+            {
+                Vector3 spawnPosition = new Vector3(
+                    Random.Range(trollAreaMin.x, trollAreaMax.x),
+                    Random.Range(trollAreaMin.y, trollAreaMax.y),
+                    0
+                );
 
-            GameObject new_spawn = Instantiate(trollPrefab, panel.transform);
-            new_spawn.transform.position = spawnPosition;
+                GameObject new_spawn = Instantiate(trollPrefab, panel.transform);
+                new_spawn.transform.position = spawnPosition;
+            }
         }
 
         public void KnightSpawn()

@@ -24,8 +24,8 @@ public class FieldScript : MonoBehaviour
     public int width;
     public int height;
 
-    private int first_castle_x;
-    private int first_castle_y;
+    public int first_castle_x;
+    public int first_castle_y;
 
     [SerializeField] GameObject panel;
     [SerializeField] GameObject zoomPanel;
@@ -222,7 +222,6 @@ public class FieldScript : MonoBehaviour
         Vector2 coords = zoomPanel.transform.position;
         float x = (float)(coords.x - (width / 2 + (width % 2 == 0 ? 0 : 0.5) - j + 0.5) * cellSize.x); 
         float y = (float)(coords.y + (height / 2 + (height % 2 == 0 ? 0 : 0.5) - i + 0.5) * cellSize.y);
-
 
         Vector3 villagerSpawnPoint = new Vector3(x, y, 0f);
 

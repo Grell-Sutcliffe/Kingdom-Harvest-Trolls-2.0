@@ -54,7 +54,7 @@ public class ColliderScript : MonoBehaviour
 
         if (cell.type == "wheat")
         {
-            new_cell = fieldScript.FindCellByType(cell.type, 0, cell.count_of_road, true, cell.index);
+            new_cell = fieldScript.FindCellByType(cell.type, 0, cell.count_of_road, true, -1);
         }
         else
         {

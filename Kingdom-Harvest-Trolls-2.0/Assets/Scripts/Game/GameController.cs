@@ -68,6 +68,7 @@ public class GameController : MonoBehaviour
 
     private string not_enougth = "My lord, you do not have enough of materials to do the action.";
 
+    /*
     private string[] greetings = {
         "Greetings, my king! I'm your servant Sycophant and I will assist you! You, my king, must defend the kingdom and villagers from evil trolls and expand it!",
         "To the left of the screen, there is a panel displating the kingdom's resources. You can buy a new cell and rotate it by clicking on the bigger image of it for the best match on the map!",
@@ -76,6 +77,7 @@ public class GameController : MonoBehaviour
     };
 
     private int current_greeting = 0;
+    */
 
     private bool is_win = false;
     private bool is_lose = false;
@@ -117,11 +119,13 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
+        /*
         if ((Dude.active == false) && (current_greeting < greetings.Length))
         {
             OpenDude(greetings[current_greeting]);
             current_greeting++;
         }
+        */
 
         if (sprite != null)
         {
@@ -676,6 +680,11 @@ public class GameController : MonoBehaviour
     {
         need_to_fit_cell = true;
         SurePanel.SetActive(false);
+    }
+
+    public void StartTrollSpawn()
+    {
+        Zoom.GetComponent<EnemySpawner>().need_to_spawn_troll = true;
     }
 
     private void Timer()
