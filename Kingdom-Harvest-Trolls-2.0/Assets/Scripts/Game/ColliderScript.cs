@@ -8,6 +8,7 @@ public class ColliderScript : MonoBehaviour
 {
     public int index_i;
     public int index_j;
+    private float castle_interval = 10f;
 
     GameController gameController;
     FieldScript fieldScript;
@@ -38,7 +39,7 @@ public class ColliderScript : MonoBehaviour
         }
         else
         {
-            if (fieldScript.cells[index_i, index_j].type == "road")
+            if ((fieldScript.cells[index_i, index_j].type == "road") && (collision.gameObject.tag == "Villager"))
             {
                 fieldScript.cells[index_i, index_j].coin_amount += fieldScript.cells[index_i, index_j].count_of_road;
             }
@@ -69,7 +70,7 @@ public class ColliderScript : MonoBehaviour
 
         if ((new_cell.type == "castle") && (new_cell.is_destroyed == true) && (new_cell.level > -1))
         {
-            Invoke("CastleSecondChance", 3f);
+            Invoke("CastleSecondChance", castle_interval);
         }
     }
 
