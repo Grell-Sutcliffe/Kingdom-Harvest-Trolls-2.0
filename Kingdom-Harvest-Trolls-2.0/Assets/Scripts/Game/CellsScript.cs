@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -80,16 +81,19 @@ namespace Game
 
     public class CellsScript : MonoBehaviour
     {
-        public Cell[] all_cells = new Cell[30];
+        public Cell[] all_cells = new Cell[44];
         public Cell[] choose_cells;
 
-        public Cell[] cellChoose = new Cell[3];
+        public Cell[] cellChoose = new Cell[6];
 
         System.Random random = new System.Random();
 
         public Image cell1;
         public Image cell2;
         public Image cell3;
+        public Image cell4;
+        public Image cell5;
+        public Image cell6;
 
         private void Start()
         {
@@ -119,15 +123,29 @@ namespace Game
 
         public void RandomCell()
         {
+            HashSet<Cell> unique_cells = new HashSet<Cell>();
+
+            while (unique_cells.Count <  cellChoose.Length)
+            {
+                unique_cells.Add(choose_cells[random.Next(0, choose_cells.Length)]);
+            }
+
+            /*
             for (int i = 0; i < cellChoose.Length; i++)
             {
                 cellChoose[i] = choose_cells[random.Next(0, choose_cells.Length)];
                 //Debug.Log(cellChoose[i].type);
             }
+            */
 
-            cell1.sprite = cellChoose[0].sprite;
-            cell2.sprite = cellChoose[1].sprite;
-            cell3.sprite = cellChoose[2].sprite;
+            List<Cell> new_cells = unique_cells.ToList();
+
+            cell1.sprite = new_cells[0].sprite;
+            cell2.sprite = new_cells[1].sprite;
+            cell3.sprite = new_cells[2].sprite;
+            cell4.sprite = new_cells[3].sprite;
+            cell5.sprite = new_cells[4].sprite;
+            cell6.sprite = new_cells[5].sprite;
         }
     }
 }
