@@ -23,4 +23,16 @@ public class TrollSwordScript : MonoBehaviour
             knight.TakeDamage(damage);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.tag == "Knight")
+        {
+            KnightController knight = collider.GetComponent<KnightController>();
+
+            int damage = troll.attack;
+
+            knight.TakeDamage(damage);
+        }
+    }
 }
