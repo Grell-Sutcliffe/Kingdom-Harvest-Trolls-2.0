@@ -9312,7 +9312,7 @@ MonoBehaviour:
     villager_amount: 0
     interval: 10
     is_destroyed: 0
-    cost_of_upgrate: 65
+    cost_of_upgrate: 60
     coin_per_time: 65
     wheat_per_time: 0
     level: 0
@@ -9333,7 +9333,7 @@ MonoBehaviour:
     villager_amount: 0
     interval: -1
     is_destroyed: 1
-    cost_of_upgrate: 65
+    cost_of_upgrate: 60
     coin_per_time: 65
     wheat_per_time: 0
     level: 0
