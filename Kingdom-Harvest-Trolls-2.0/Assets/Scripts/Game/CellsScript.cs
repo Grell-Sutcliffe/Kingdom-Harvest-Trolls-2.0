@@ -27,6 +27,7 @@ namespace Game
         public int count_of_road;
         public bool is_just_road;
         public int rotation;
+        public int index;
         public int time_for_peak;
 
         public Cell(Sprite _sprite,
@@ -48,7 +49,8 @@ namespace Game
                     int _level,
                     int _count_of_road,
                     bool _is_just_road,
-                    int _rotation
+                    int _rotation,
+                    int _index
                     )
         {
             sprite = _sprite;
@@ -71,6 +73,7 @@ namespace Game
             count_of_road = _count_of_road;
             is_just_road = _is_just_road;
             rotation = _rotation;
+            index = _index;
             time_for_peak = 60;
         }
     }

@@ -316,7 +316,7 @@ public class GameController : MonoBehaviour
 
             if (fieldScript.cells[x, y].wheat_amount > 0)
             {
-                Cell new_wheat = fieldScript.FindCellByType("wheat", 0, 0, false);
+                Cell new_wheat = fieldScript.FindCellByType("wheat", 0, 0, false, -1);
                 UpgrateCellInfo(x, y, new_wheat);
                 fieldScript.cells[x, y].wheat_amount = 0;
                 fieldScript.cells[x, y].time_for_peak = 60;
@@ -537,7 +537,7 @@ public class GameController : MonoBehaviour
     public void RepairCell()
     {
         Cell cell = fieldScript.cells[x, y];
-        Cell new_cell = fieldScript.FindCellByType(cell.type, cell.level + (cell.level == -1 ? 1 : 0), cell.count_of_road, false);
+        Cell new_cell = fieldScript.FindCellByType(cell.type, cell.level + (cell.level == -1 ? 1 : 0), cell.count_of_road, false, cell.index);
         new_cell.rotation = cell.rotation;
         new_cell = EditRepairedCell(new_cell);
 
@@ -562,7 +562,7 @@ public class GameController : MonoBehaviour
     public void UpgrateCastle()
     {
         int next_lvl = fieldScript.cells[x, y].level + 1;
-        Cell new_castle = fieldScript.FindCellByType("castle", next_lvl, 1, false);
+        Cell new_castle = fieldScript.FindCellByType("castle", next_lvl, 1, false, -1);
         new_castle.rotation = fieldScript.cells[x, y].rotation;
         new_castle = EditRepairedCell(new_castle);
         new_castle.coin_amount = fieldScript.cells[x, y].coin_amount;
@@ -599,7 +599,7 @@ public class GameController : MonoBehaviour
         int castle_current_lvl = fieldScript.cells[x, y].level + 1;
         int current_coin_per_time = fieldScript.cells[x, y].coin_per_time;
         int current_villager_amount = fieldScript.cells[x, y].villager_amount;
-        Cell new_castle = fieldScript.FindCellByType("castle", castle_current_lvl, 1, false);
+        Cell new_castle = fieldScript.FindCellByType("castle", castle_current_lvl, 1, false, -1);
         int cost = new_castle.cost_of_upgrate;
 
         if (fieldScript.cells[x, y].level < 2)

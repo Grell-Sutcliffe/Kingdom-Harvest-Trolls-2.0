@@ -53,11 +53,11 @@ public class ColliderScript : MonoBehaviour
 
         if (cell.type == "wheat")
         {
-            new_cell = fieldScript.FindCellByType(cell.type, 0, cell.count_of_road, true);
+            new_cell = fieldScript.FindCellByType(cell.type, 0, cell.count_of_road, true, cell.index);
         }
         else
         {
-            new_cell = fieldScript.FindCellByType(cell.type, cell.level, cell.count_of_road, true);
+            new_cell = fieldScript.FindCellByType(cell.type, cell.level, cell.count_of_road, true, cell.index);
         }
 
         new_cell.rotation = cell.rotation;
@@ -84,9 +84,9 @@ public class ColliderScript : MonoBehaviour
                     Cell cell = fieldScript.cells[index_i, index_j];
                     Cell new_cell;
 
-                    if ((cell.type == "castle") && (cell.is_destroyed == true) && (fieldScript.checks[index_i, index_j].tag == "Knight"))
+                    if ((cell.type == "castle") && (cell.is_destroyed == true) && (fieldScript.checks[index_i, index_j].tag == "Village"))
                     {
-                        new_cell = fieldScript.FindCellByType("castle", -1, 1, true);
+                        new_cell = fieldScript.FindCellByType("castle", -1, 1, true, -1);
 
                         gameController.OpenDude("The castle is turning into riuns!");
 

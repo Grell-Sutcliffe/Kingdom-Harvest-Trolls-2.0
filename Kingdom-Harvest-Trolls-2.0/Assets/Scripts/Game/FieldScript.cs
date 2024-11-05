@@ -112,7 +112,7 @@ public class FieldScript : MonoBehaviour
 
             if (cells[i, j].type == "wheat")
             {
-                Cell new_wheat = FindCellByType("wheat", 2, 0, false);
+                Cell new_wheat = FindCellByType("wheat", 2, 0, false, cells[i, j].index);
                 int wheat_amount = cells[i, j].wheat_amount;
                 cells[i, j] = new_wheat;
                 cells[i, j].wheat_amount = wheat_amount;
@@ -128,7 +128,7 @@ public class FieldScript : MonoBehaviour
             if ((cells[i, j].type == "wheat") && (cells[i, j].level == 0))
             {
                 Cell last_cell = cells[i, j];
-                Cell new_wheat = FindCellByType("wheat", 1, 0, false);
+                Cell new_wheat = FindCellByType("wheat", 1, 0, false, cells[i, j].index);
                 cells[i, j] = new_wheat;
                 dark_cells[i, j].GetComponent<Image>().sprite = new_wheat.sprite;
                 cells[i, j].time_for_peak = last_cell.time_for_peak;
@@ -178,7 +178,7 @@ public class FieldScript : MonoBehaviour
         int castle_x = random.Next(height / 3, 2 * height / 3);
         int castle_y = random.Next(width / 3, 2 * width / 3);
 
-        Cell cell = FindCellByType("castle", 0, 1, false);
+        Cell cell = FindCellByType("castle", 0, 1, false, -1);
         cells[castle_x, castle_y] = cell;
         dark_cells[castle_x, castle_y].GetComponent<Image>().sprite = cell.sprite;
         ChangeCellTag(castle_x, castle_y, "Village");
@@ -187,24 +187,25 @@ public class FieldScript : MonoBehaviour
         first_castle_y = castle_y;
         Invoke("CreateFirstVillager", 2f);
 
-        cell = FindCellByType("quater_village", 0, 0, false);
+        cell = FindCellByType("quater_village", 0, 0, false, -1);
         cells[castle_x, castle_y + 1] = cell;
         dark_cells[castle_x, castle_y + 1].GetComponent<Image>().sprite = cell.sprite;
         ChangeCellTag(castle_x, castle_y + 1, "Village");
 
-        cell = FindCellByType("quater_village", 0, 2, false);
+        cell = FindCellByType("quater_village", 0, 2, false, -1);
         cells[castle_x - 1, castle_y] = cell;
         dark_cells[castle_x - 1, castle_y].GetComponent<Image>().sprite = cell.sprite;
         ChangeCellTag(castle_x - 1, castle_y, "Village");
 
-        cell = FindCellByType("wheat", 0, 0, false);
+        cell = FindCellByType("wheat", 0, 0, false, -1);
         cells[castle_x, castle_y - 1] = cell;
         dark_cells[castle_x, castle_y - 1].GetComponent<Image>().sprite = cell.sprite;
         ChangeCellTag(castle_x, castle_y - 1, "Village");
 
-        cell = FindCellByType("road", 4, 4, false);
+        cell = FindCellByType("road", 4, 4, false, -1);
         cells[castle_x + 1, castle_y] = cell;
         dark_cells[castle_x + 1, castle_y].GetComponent<Image>().sprite = cell.sprite;
+        ChangeCellTag(castle_x + 1, castle_y, "Village");
     }
 
     private void CreateFirstVillager()
@@ -260,13 +261,14 @@ public class FieldScript : MonoBehaviour
         //Debug.Log($"{dark_cells[i, j].GetComponent<Image>().sprite.name} {i} {j}");
     }
 
-    public Cell FindCellByType(string type, int level, int count_of_road, bool is_destroyed)
+    public Cell FindCellByType(string type, int level, int count_of_road, bool is_destroyed, int index)
     {
         for (int i = 0; i < cellsScript.all_cells.Length; i++)
             if ((cellsScript.all_cells[i].type == type) &&
                 ((level == -10) ? (true) : (cellsScript.all_cells[i].level == level)) &&
                 ((count_of_road == -10) ? (true) : (cellsScript.all_cells[i].count_of_road == count_of_road)) &&
-                (cellsScript.all_cells[i].is_destroyed == is_destroyed))
+                (cellsScript.all_cells[i].is_destroyed == is_destroyed) &&
+                ((index == -1) ? (true) : (cellsScript.all_cells[i].index == index)))
             {
                 return cellsScript.all_cells[i];
             }

@@ -8647,6 +8647,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 1
     time_for_peak: 60
   - sprite: {fileID: -245696635, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: grass
@@ -8668,6 +8669,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 1
     time_for_peak: 60
   - sprite: {fileID: -1951752273, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: grass
@@ -8689,6 +8691,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 1
     time_for_peak: 60
   - sprite: {fileID: 1021004755, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: half_village
@@ -8710,6 +8713,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 2
     time_for_peak: 60
   - sprite: {fileID: 154368077, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: half_village
@@ -8731,6 +8735,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 2
     time_for_peak: 60
   - sprite: {fileID: 2041666101, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: half_village
@@ -8752,6 +8757,7 @@ MonoBehaviour:
     count_of_road: 2
     is_just_road: 0
     rotation: 0
+    index: 3
     time_for_peak: 60
   - sprite: {fileID: -1626971353, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: half_village
@@ -8773,6 +8779,7 @@ MonoBehaviour:
     count_of_road: 2
     is_just_road: 0
     rotation: 0
+    index: 3
     time_for_peak: 60
   - sprite: {fileID: 1759783421, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: castle
@@ -8794,6 +8801,7 @@ MonoBehaviour:
     count_of_road: 1
     is_just_road: 0
     rotation: 0
+    index: 4
     time_for_peak: 60
   - sprite: {fileID: 191766238, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: castle
@@ -8815,6 +8823,7 @@ MonoBehaviour:
     count_of_road: 1
     is_just_road: 0
     rotation: 0
+    index: 4
     time_for_peak: 60
   - sprite: {fileID: -209909509, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: castle
@@ -8836,6 +8845,7 @@ MonoBehaviour:
     count_of_road: 1
     is_just_road: 0
     rotation: 0
+    index: 4
     time_for_peak: 60
   - sprite: {fileID: -1274796333, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: castle
@@ -8857,6 +8867,7 @@ MonoBehaviour:
     count_of_road: 1
     is_just_road: 0
     rotation: 0
+    index: 4
     time_for_peak: 60
   - sprite: {fileID: 49876147, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: castle
@@ -8878,6 +8889,7 @@ MonoBehaviour:
     count_of_road: 1
     is_just_road: 0
     rotation: 0
+    index: 4
     time_for_peak: 60
   - sprite: {fileID: -795599282, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: castle
@@ -8899,6 +8911,7 @@ MonoBehaviour:
     count_of_road: 1
     is_just_road: 0
     rotation: 0
+    index: 4
     time_for_peak: 60
   - sprite: {fileID: 2002643159, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: castle
@@ -8920,6 +8933,7 @@ MonoBehaviour:
     count_of_road: 1
     is_just_road: 0
     rotation: 0
+    index: 4
     time_for_peak: 60
   - sprite: {fileID: -23118517, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: quater_village
@@ -8941,6 +8955,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 5
     time_for_peak: 60
   - sprite: {fileID: -517300926, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: quater_village
@@ -8962,6 +8977,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 5
     time_for_peak: 60
   - sprite: {fileID: 510198341, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: quater_village
@@ -8983,6 +8999,7 @@ MonoBehaviour:
     count_of_road: 2
     is_just_road: 1
     rotation: 0
+    index: 6
     time_for_peak: 60
   - sprite: {fileID: -1732615342, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: quater_village
@@ -9004,6 +9021,7 @@ MonoBehaviour:
     count_of_road: 2
     is_just_road: 1
     rotation: 0
+    index: 6
     time_for_peak: 60
   - sprite: {fileID: 1006422492, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: road
@@ -9025,6 +9043,7 @@ MonoBehaviour:
     count_of_road: 4
     is_just_road: 1
     rotation: 0
+    index: 7
     time_for_peak: 60
   - sprite: {fileID: 1417534210, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: road
@@ -9046,6 +9065,7 @@ MonoBehaviour:
     count_of_road: 3
     is_just_road: 1
     rotation: 0
+    index: 7
     time_for_peak: 60
   - sprite: {fileID: -1169664318, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: road
@@ -9067,6 +9087,7 @@ MonoBehaviour:
     count_of_road: 2
     is_just_road: 1
     rotation: 0
+    index: 7
     time_for_peak: 60
   - sprite: {fileID: 964589688, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: road
@@ -9088,6 +9109,7 @@ MonoBehaviour:
     count_of_road: 2
     is_just_road: 1
     rotation: 0
+    index: 7
     time_for_peak: 60
   - sprite: {fileID: -550783611, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: wheat
@@ -9109,6 +9131,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 8
     time_for_peak: 60
   - sprite: {fileID: 1670284822, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: wheat
@@ -9130,6 +9153,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 8
     time_for_peak: 60
   - sprite: {fileID: -282866103, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: wheat
@@ -9151,6 +9175,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 8
     time_for_peak: 60
   - sprite: {fileID: -2074874292, guid: 66eedb4881f05dc45a8ec69d9c4a14d8, type: 3}
     type: wheat
@@ -9172,6 +9197,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 8
     time_for_peak: 60
   - sprite: {fileID: -1116745850, guid: 8e102b36739765840838ef62a97c6f51, type: 3}
     type: road
@@ -9193,6 +9219,7 @@ MonoBehaviour:
     count_of_road: 3
     is_just_road: 1
     rotation: 0
+    index: 7
     time_for_peak: 60
   - sprite: {fileID: -2018848985, guid: 8e102b36739765840838ef62a97c6f51, type: 3}
     type: road
@@ -9214,6 +9241,7 @@ MonoBehaviour:
     count_of_road: 4
     is_just_road: 1
     rotation: 0
+    index: 7
     time_for_peak: 60
   - sprite: {fileID: 225082595, guid: 8e102b36739765840838ef62a97c6f51, type: 3}
     type: road
@@ -9235,6 +9263,7 @@ MonoBehaviour:
     count_of_road: 2
     is_just_road: 1
     rotation: 0
+    index: 7
     time_for_peak: 60
   - sprite: {fileID: 886648521, guid: 8e102b36739765840838ef62a97c6f51, type: 3}
     type: road
@@ -9256,6 +9285,7 @@ MonoBehaviour:
     count_of_road: 2
     is_just_road: 1
     rotation: 0
+    index: 7
     time_for_peak: 60
   - sprite: {fileID: 21300000, guid: 4f19d006ca898d94a8dca318b923dc66, type: 3}
     type: full_village
@@ -9277,6 +9307,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 9
     time_for_peak: 60
   - sprite: {fileID: 21300000, guid: 36e4b880400c8954db6f19ffa5e2ae84, type: 3}
     type: full_village
@@ -9298,6 +9329,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 9
     time_for_peak: 60
   - sprite: {fileID: 21300000, guid: d41c905c8d74a1249a2e9ff8b631670b, type: 3}
     type: tripple_village
@@ -9319,6 +9351,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 10
     time_for_peak: 60
   - sprite: {fileID: 21300000, guid: 2b147a5e71a78f744aeb0c628c28dffd, type: 3}
     type: tripple_village
@@ -9340,6 +9373,139 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 10
+    time_for_peak: 60
+  - sprite: {fileID: -1671847160, guid: 05d97f67dfb10a5409ffdfeb6de5c09b, type: 3}
+    type: quater_village
+    destroyable: 1
+    title: Village
+    down: village
+    right: road
+    up: road
+    left: grass
+    coin_amount: 0
+    wheat_amount: 0
+    villager_amount: 0
+    interval: 10
+    is_destroyed: 0
+    cost_of_upgrate: 20
+    coin_per_time: 30
+    wheat_per_time: 0
+    level: 0
+    count_of_road: 2
+    is_just_road: 0
+    rotation: 0
+    index: 11
+    time_for_peak: 60
+  - sprite: {fileID: 1107035190, guid: 05d97f67dfb10a5409ffdfeb6de5c09b, type: 3}
+    type: quater_village
+    destroyable: 1
+    title: Village
+    down: village
+    right: road
+    up: road
+    left: grass
+    coin_amount: 0
+    wheat_amount: 0
+    villager_amount: 0
+    interval: -1
+    is_destroyed: 1
+    cost_of_upgrate: 20
+    coin_per_time: 30
+    wheat_per_time: 0
+    level: 0
+    count_of_road: 2
+    is_just_road: 0
+    rotation: 0
+    index: 11
+    time_for_peak: 60
+  - sprite: {fileID: -1012613432, guid: 05d97f67dfb10a5409ffdfeb6de5c09b, type: 3}
+    type: quater_village
+    destroyable: 1
+    title: Village
+    down: village
+    right: grass
+    up: road
+    left: road
+    coin_amount: 0
+    wheat_amount: 0
+    villager_amount: 0
+    interval: 10
+    is_destroyed: 0
+    cost_of_upgrate: 20
+    coin_per_time: 30
+    wheat_per_time: 0
+    level: 0
+    count_of_road: 2
+    is_just_road: 0
+    rotation: 0
+    index: 12
+    time_for_peak: 60
+  - sprite: {fileID: 2116118563, guid: 05d97f67dfb10a5409ffdfeb6de5c09b, type: 3}
+    type: quater_village
+    destroyable: 1
+    title: Village
+    down: village
+    right: grass
+    up: road
+    left: road
+    coin_amount: 0
+    wheat_amount: 0
+    villager_amount: 0
+    interval: -1
+    is_destroyed: 1
+    cost_of_upgrate: 20
+    coin_per_time: 30
+    wheat_per_time: 0
+    level: 0
+    count_of_road: 2
+    is_just_road: 0
+    rotation: 0
+    index: 12
+    time_for_peak: 60
+  - sprite: {fileID: 10768227, guid: b5f92e00f51cc0245a2cf107bdd4f953, type: 3}
+    type: quater_village
+    destroyable: 1
+    title: Village
+    down: village
+    right: road
+    up: road
+    left: road
+    coin_amount: 0
+    wheat_amount: 0
+    villager_amount: 0
+    interval: 10
+    is_destroyed: 0
+    cost_of_upgrate: 20
+    coin_per_time: 30
+    wheat_per_time: 0
+    level: 0
+    count_of_road: 3
+    is_just_road: 0
+    rotation: 0
+    index: 13
+    time_for_peak: 60
+  - sprite: {fileID: 639954330, guid: b5f92e00f51cc0245a2cf107bdd4f953, type: 3}
+    type: quater_village
+    destroyable: 1
+    title: Village
+    down: village
+    right: road
+    up: road
+    left: road
+    coin_amount: 0
+    wheat_amount: 0
+    villager_amount: 0
+    interval: -1
+    is_destroyed: 1
+    cost_of_upgrate: 20
+    coin_per_time: 30
+    wheat_per_time: 0
+    level: 0
+    count_of_road: 3
+    is_just_road: 0
+    rotation: 0
+    index: 13
     time_for_peak: 60
   choose_cells: []
   cellChoose:
@@ -9363,6 +9529,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 0
     time_for_peak: 0
   - sprite: {fileID: 0}
     type: 
@@ -9384,6 +9551,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 0
     time_for_peak: 0
   - sprite: {fileID: 0}
     type: 
@@ -9405,6 +9573,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 0
     time_for_peak: 0
   cell1: {fileID: 268692880}
   cell2: {fileID: 1717729558}
@@ -10120,6 +10289,7 @@ MonoBehaviour:
     count_of_road: 0
     is_just_road: 0
     rotation: 0
+    index: 0
     time_for_peak: 0
   free_cells_amount: 0
 --- !u!4 &1763886534
