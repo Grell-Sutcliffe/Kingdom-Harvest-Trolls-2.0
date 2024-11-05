@@ -11,6 +11,7 @@ public class TimelineController : MonoBehaviour
     private Vector3 dude_scale;
     private bool IF = true;
 
+    public GameObject bag;
     public GameObject left_panel_shower;
     public GameObject recources_materials_shower;
     public GameObject recources_people_shower;
@@ -18,6 +19,7 @@ public class TimelineController : MonoBehaviour
     public GameObject rotate_new_cell_shower;
     public GameObject buy_knights_shower;
     public GameObject upgrade_castle_shower;
+    public GameObject skip_button;
 
     public Sprite castle_shower;
     private Sprite last_castle;
@@ -45,6 +47,8 @@ public class TimelineController : MonoBehaviour
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         fieldScript = GameObject.Find("FieldPanel").GetComponent<FieldScript>();
         dude_scale = gameController.Dude.transform.localScale;
+
+        bag.SetActive(true);
         
         Turn_IF(false);
     }
@@ -175,6 +179,7 @@ public class TimelineController : MonoBehaviour
     public void CloseCurrentShower()
     {
         Turn_IF(false);
+        gameController.CloseDude();
     }
 
     private void Turn_IF(bool IF)
@@ -193,6 +198,9 @@ public class TimelineController : MonoBehaviour
         IF = false;
         Turn_IF(false);
         gameController.CloseDude();
+        skip_button.gameObject.SetActive(false);
         gameController.StartTrollSpawn();
+
+        Destroy(gameObject);
     }
 }
