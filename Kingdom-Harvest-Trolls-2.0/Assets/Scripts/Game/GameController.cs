@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     public int wheat_amount = 200;
     public int knight_amount = 1;
     public int villager_amount = 1;
+    public int king_amount = 0;
 
     public int cost_of_new_cell = 200;
 
@@ -22,6 +23,7 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI wheat_amount_text;
     public TextMeshProUGUI knight_amount_text;
     public TextMeshProUGUI villager_amount_text;
+    public TextMeshProUGUI king_amount_text;
 
     [SerializeField] GameObject colliderPanel;
 
@@ -113,6 +115,7 @@ public class GameController : MonoBehaviour
         IncreaseWheatAmount(0);
         IncreaseKnightAmount(0);
         IncreaseVillagerAmount(0);
+        IncreaseKingAmount(0);
 
         InvokeRepeating("Timer", 1f, 1f);
     }
@@ -373,6 +376,12 @@ public class GameController : MonoBehaviour
     {
         knight_amount += amount;
         knight_amount_text.text = knight_amount.ToString();
+    }
+
+    public void IncreaseKingAmount(int amount)
+    {
+        king_amount += amount;
+        king_amount_text.text = king_amount.ToString();
     }
 
     public void OpenCellPressedPanel(int index_i, int index_j)

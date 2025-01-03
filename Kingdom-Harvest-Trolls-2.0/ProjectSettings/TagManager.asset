@@ -13,6 +13,7 @@ TagManager:
   - VillagerArea
   - Sound
   - Village
+  - King
   layers:
   - Default
   - TransparentFX
