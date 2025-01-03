@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class KingAnimationController : MonoBehaviour
 {
-    KnightController knightController;
+    KingController kingController;
 
     private Animator _animator;
     private Rigidbody2D _body;
 
     private void Start()
     {
-        knightController = GetComponent<KnightController>();
+        kingController = GetComponent<KingController>();
     }
 
     private void Awake()
@@ -22,6 +22,6 @@ public class KingAnimationController : MonoBehaviour
 
     private void Update()
     {
-        _animator.SetFloat("velocity", ((knightController.target == null) || (knightController.is_attacing == true)) ? (0) : (1));
+        _animator.SetFloat("velocity", (kingController.target == null) ? (0) : (1));
     }
 }
