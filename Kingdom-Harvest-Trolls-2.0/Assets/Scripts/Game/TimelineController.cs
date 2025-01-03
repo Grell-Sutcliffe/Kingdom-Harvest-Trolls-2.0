@@ -197,7 +197,10 @@ public class TimelineController : MonoBehaviour
     {
         IF = false;
         Turn_IF(false);
-        last_castle = fieldScript.dark_cells[fieldScript.first_castle_x, fieldScript.first_castle_y].GetComponent<Image>().sprite;
+        if (last_castle == null)
+        {
+            last_castle = fieldScript.dark_cells[fieldScript.first_castle_x, fieldScript.first_castle_y].GetComponent<Image>().sprite;
+        }
         CastleReturn();
         gameController.CloseCellPressedPanel();
         gameController.CloseDude();
