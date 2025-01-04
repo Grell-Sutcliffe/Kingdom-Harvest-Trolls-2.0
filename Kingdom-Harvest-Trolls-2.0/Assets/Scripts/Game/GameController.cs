@@ -35,6 +35,8 @@ public class GameController : MonoBehaviour
     Sprite sprite = null;
     public Sprite empty_sprite;
 
+    private HappinessLevelScript happinessScript;
+
     public GameObject optionPanel;
     public GameObject cellPressedPanel;
 
@@ -86,13 +88,21 @@ public class GameController : MonoBehaviour
     private bool is_lose = false;
 
     public int free_cells_amount;
+    public int filled_cells;
+    public int destroyed_cells;
+    public int repaired_cells;
 
     private void Start()
     {
         fieldScript = Field.GetComponent<FieldScript>();
         cellsScript = Field.GetComponent<CellsScript>();
 
+        happinessScript = GameObject.Find("HappinessLevel").GetComponent<HappinessLevelScript>();
+
         free_cells_amount = fieldScript.width * fieldScript.height - 5;
+        filled_cells = 5;
+        destroyed_cells = 0;
+        repaired_cells = 5;
 
         OpenOptionPanel();
 
@@ -191,6 +201,7 @@ public class GameController : MonoBehaviour
             if ((sprite != null) && (fieldScript.cells[index_i, index_j].title == null))
             {
                 free_cells_amount--;
+                happinessScript.ChangeMaxHappinessLevel(1);
                 SetNewCell();
             }
             else if ((sprite != null) && (fieldScript.cells[index_i, index_j].title != null))
@@ -212,6 +223,11 @@ public class GameController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ChangeCurrentHappinessLevel(int amount)
+    {
+        happinessScript.ChangeCurrentHappinessLevel(-1);
     }
 
     public void SetNewCell()

@@ -30,9 +30,10 @@ public class ColliderScript : MonoBehaviour
             {
                 if ((fieldScript.cells[index_i, index_j].destroyable) && (fieldScript.cells[index_i, index_j].is_destroyed == false))
                 {
-                    Debug.Log($"CRUSH {index_i} {index_j}, " +
+                    /*Debug.Log($"CRUSH {index_i} {index_j}, " +
                         $"{collision.gameObject.transform.position.x}" +
-                        $"{collision.gameObject.transform.position.y}");
+                        $"{collision.gameObject.transform.position.y}");*/
+                    gameController.ChangeCurrentHappinessLevel(-1);
                     DestroyCell();
                 }
             }
