@@ -344,6 +344,35 @@ public class GameController : MonoBehaviour
         UpdateClaimPanel();
     }
 
+    public void IncreaseAmountXY(int new_x, int new_y)
+    {
+        if ((fieldScript.cells[new_x, new_y].coin_per_time > 0) || (fieldScript.cells[new_x, new_y].type == "road"))
+        {
+            IncreaseCoinAmount(fieldScript.cells[new_x, new_y].coin_amount);
+            fieldScript.cells[new_x, new_y].coin_amount = 0;
+        }
+        if (fieldScript.cells[new_x, new_y].wheat_per_time > 0)
+        {
+            IncreaseWheatAmount(fieldScript.cells[new_x, new_y].wheat_amount);
+
+            if (fieldScript.cells[new_x, new_y].wheat_amount > 0)
+            {
+                Cell new_wheat = fieldScript.FindCellByType("wheat", 0, 0, false, -1);
+                UpgrateCellInfo(new_x, new_y, new_wheat);
+                fieldScript.cells[new_x, new_y].wheat_amount = 0;
+                fieldScript.cells[new_x, new_y].time_for_peak = 60;
+            }
+        }
+
+        // update claim panel
+        cellPressedPanel.gameObject.GetComponent<CellPressedPanelScript>().ChangeTitle(fieldScript.cells[new_x, new_y]);
+
+        Cell cell = fieldScript.cells[new_x, new_y];
+
+        CastleOkayPanel.GetComponent<TimerScript>().timer_text.text = cell.time_for_peak.ToString();
+        OkayPanel.GetComponent<TimerScript>().timer_text.text = cell.time_for_peak.ToString();
+    }
+
     public void UpdateClaimPanel()
     {
         cellPressedPanel.gameObject.GetComponent<CellPressedPanelScript>().ChangeTitle(fieldScript.cells[x, y]);

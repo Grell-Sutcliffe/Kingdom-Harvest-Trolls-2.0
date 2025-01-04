@@ -42,6 +42,7 @@ public class FieldScript : MonoBehaviour
     public Cell[,] cells;
     public bool[,] villager_here;
     public bool[,] king_here;
+    public bool[,] ready_to_claim;
     //bool[,] is_opened;
 
     System.Random random = new System.Random();
@@ -51,13 +52,13 @@ public class FieldScript : MonoBehaviour
 
         if (DifficultyManager.Instance != null)
         {
-            Debug.Log($"ovhfdsohndiooi111111111 {width} {height}");
+            //Debug.Log($"ovhfdsohndiooi111111111 {width} {height}");
             float widthMultiplier = DifficultyManager.Instance.Difficulty.WidthMultiplier;
             float heightMultiplier = DifficultyManager.Instance.Difficulty.HeightMultiplier;
 
             SetWidth(widthMultiplier);
             SetHeight(heightMultiplier);
-            Debug.Log($"ovhfdsohndiooi22222222 {width} {height} {widthMultiplier} {heightMultiplier}");
+            //Debug.Log($"ovhfdsohndiooi22222222 {width} {height} {widthMultiplier} {heightMultiplier}");
         }
 
         gameController = GameController.GetComponent<GameController>();
@@ -87,6 +88,8 @@ public class FieldScript : MonoBehaviour
                     if (cells[i, j].time_for_peak < 0)
                     {
                         IncreaseAmount(i, j);
+                        // ready_to_claim
+                        ready_to_claim[i, j] = true;
                         cells[i, j].time_for_peak = 60;
                     }
 
@@ -141,6 +144,7 @@ public class FieldScript : MonoBehaviour
     {
         villager_here = new bool[height, width];
         king_here = new bool[height, width];
+        ready_to_claim = new bool[height, width];
         dark_cells = new GameObject[height, width];
         cells = new Cell[height, width];
         checks = new GameObject[height, width];
@@ -161,6 +165,8 @@ public class FieldScript : MonoBehaviour
 
                 checks[i, j].gameObject.GetComponent<ColliderScript>().index_i = i;
                 checks[i, j].gameObject.GetComponent<ColliderScript>().index_j = j;
+
+                ready_to_claim[i, j] = false;
             }
 
         PlaceRandomCastle();
@@ -285,7 +291,7 @@ public class FieldScript : MonoBehaviour
     {
         width *= (int)multiplier;
         //widthMultipler = multiplier;
-        Debug.Log("ovhfdsohndiooi");
+        //Debug.Log("ovhfdsohndiooi");
     }
 
     public void SetHeight(float multiplier)

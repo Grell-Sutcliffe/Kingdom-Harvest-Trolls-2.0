@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class KingController : MonoBehaviour
@@ -63,7 +64,7 @@ public class KingController : MonoBehaviour
         go_to_x = index_i;
         go_to_y = index_j;
 
-        FindWay();
+        InvokeFindWay();
     }
 
     private void Update()
@@ -121,8 +122,19 @@ public class KingController : MonoBehaviour
 
     private void InvokeFindWay()
     {
+        ClaimIfClaimable();
+
         float time = UnityEngine.Random.Range(2f, 4f);
         Invoke("FindWay", time);
+    }
+
+    private void ClaimIfClaimable()
+    {
+        if (fieldScript.ready_to_claim[index_i, index_j])
+        {
+            gameController.IncreaseAmountXY(index_i, index_j);
+            fieldScript.ready_to_claim[index_i, index_j] = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -172,6 +184,7 @@ public class KingController : MonoBehaviour
     private void FindWay()
     {
         Tuple<int, int>[] ways = new Tuple<int, int>[0];
+        Tuple<int, int>[] claimable_ways = new Tuple<int, int>[0];
 
         // go down
         if (fieldScript.cells[index_i, index_j].down == "road")
@@ -183,6 +196,12 @@ public class KingController : MonoBehaviour
                     {
                         System.Array.Resize(ref ways, ways.Length + 1);
                         ways[ways.Length - 1] = new Tuple<int, int>(index_i + 1, index_j);
+
+                        if (fieldScript.ready_to_claim[index_i + 1, index_j])
+                        {
+                            System.Array.Resize(ref ways, ways.Length + 1);
+                            claimable_ways[claimable_ways.Length - 1] = new Tuple<int, int>(index_i + 1, index_j);
+                        }
                     }
                 }
         }
@@ -199,6 +218,12 @@ public class KingController : MonoBehaviour
                     {
                         System.Array.Resize(ref ways, ways.Length + 1);
                         ways[ways.Length - 1] = new Tuple<int, int>(index_i + 1, index_j);
+
+                        if (fieldScript.ready_to_claim[index_i + 1, index_j])
+                        {
+                            System.Array.Resize(ref ways, ways.Length + 1);
+                            claimable_ways[claimable_ways.Length - 1] = new Tuple<int, int>(index_i + 1, index_j);
+                        }
                     }
                 }
         }
@@ -213,6 +238,12 @@ public class KingController : MonoBehaviour
                     {
                         System.Array.Resize(ref ways, ways.Length + 1);
                         ways[ways.Length - 1] = new Tuple<int, int>(index_i - 1, index_j);
+
+                        if (fieldScript.ready_to_claim[index_i - 1, index_j])
+                        {
+                            System.Array.Resize(ref ways, ways.Length + 1);
+                            claimable_ways[claimable_ways.Length - 1] = new Tuple<int, int>(index_i - 1, index_j);
+                        }
                     }
                 }
         }
@@ -229,6 +260,12 @@ public class KingController : MonoBehaviour
                     {
                         System.Array.Resize(ref ways, ways.Length + 1);
                         ways[ways.Length - 1] = new Tuple<int, int>(index_i - 1, index_j);
+
+                        if (fieldScript.ready_to_claim[index_i - 1, index_j])
+                        {
+                            System.Array.Resize(ref ways, ways.Length + 1);
+                            claimable_ways[claimable_ways.Length - 1] = new Tuple<int, int>(index_i - 1, index_j);
+                        }
                     }
                 }
         }
@@ -243,6 +280,12 @@ public class KingController : MonoBehaviour
                     {
                         System.Array.Resize(ref ways, ways.Length + 1);
                         ways[ways.Length - 1] = new Tuple<int, int>(index_i, index_j + 1);
+
+                        if (fieldScript.ready_to_claim[index_i, index_j + 1])
+                        {
+                            System.Array.Resize(ref ways, ways.Length + 1);
+                            claimable_ways[claimable_ways.Length - 1] = new Tuple<int, int>(index_i, index_j + 1);
+                        }
                     }
                 }
         }
@@ -259,6 +302,12 @@ public class KingController : MonoBehaviour
                     {
                         System.Array.Resize(ref ways, ways.Length + 1);
                         ways[ways.Length - 1] = new Tuple<int, int>(index_i, index_j + 1);
+
+                        if (fieldScript.ready_to_claim[index_i, index_j + 1])
+                        {
+                            System.Array.Resize(ref ways, ways.Length + 1);
+                            claimable_ways[claimable_ways.Length - 1] = new Tuple<int, int>(index_i, index_j + 1);
+                        }
                     }
                 }
         }
@@ -273,6 +322,12 @@ public class KingController : MonoBehaviour
                     {
                         System.Array.Resize(ref ways, ways.Length + 1);
                         ways[ways.Length - 1] = new Tuple<int, int>(index_i, index_j - 1);
+
+                        if (fieldScript.ready_to_claim[index_i, index_j - 1])
+                        {
+                            System.Array.Resize(ref ways, ways.Length + 1);
+                            claimable_ways[claimable_ways.Length - 1] = new Tuple<int, int>(index_i, index_j - 1);
+                        }
                     }
                 }
         }
@@ -289,12 +344,30 @@ public class KingController : MonoBehaviour
                     {
                         System.Array.Resize(ref ways, ways.Length + 1);
                         ways[ways.Length - 1] = new Tuple<int, int>(index_i, index_j - 1);
+
+                        if (fieldScript.ready_to_claim[index_i, index_j - 1])
+                        {
+                            System.Array.Resize(ref ways, ways.Length + 1);
+                            claimable_ways[claimable_ways.Length - 1] = new Tuple<int, int>(index_i, index_j - 1);
+                        }
                     }
                 }
         }
 
         // choose way (random)
-        if (ways.Length > 0)
+        if (claimable_ways.Length > 0)
+        {
+            int index = random.Next(0, claimable_ways.Length);
+            go_to_x = claimable_ways[index].Item1;
+            go_to_y = claimable_ways[index].Item2;
+
+            if (needs_help == true)
+            {
+                HideDialog();
+                needs_help = false;
+            }
+        }
+        else if (ways.Length > 0)
         {
             int index = random.Next(0, ways.Length);
             go_to_x = ways[index].Item1;
