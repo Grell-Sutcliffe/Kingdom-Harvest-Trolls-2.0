@@ -39,9 +39,20 @@ namespace Game
             PlayerPrefs.Save();
         }
 
+        public static void SaveLanguage(int languageIndex)
+        {
+            //PlayerPrefs.SetInt(LanguageKey, languageIndex);
+            PlayerPrefs.Save();
+        }
+
         public static int LoadDifficulty()
         {
             return PlayerPrefs.GetInt(DifficultyKey, 0);
+        }
+        public static int LoadLanguage()
+        {
+            //return PlayerPrefs.GetInt(LanguageKey, 0);
+            return 0;
         }
     }
 }
