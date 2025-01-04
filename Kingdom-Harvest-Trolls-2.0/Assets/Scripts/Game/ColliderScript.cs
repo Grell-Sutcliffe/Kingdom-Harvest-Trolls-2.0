@@ -42,6 +42,7 @@ public class ColliderScript : MonoBehaviour
             if ((fieldScript.cells[index_i, index_j].type == "road") && (collision.gameObject.tag == "Villager"))
             {
                 fieldScript.cells[index_i, index_j].coin_amount += fieldScript.cells[index_i, index_j].count_of_road;
+                fieldScript.ready_to_claim[index_i, index_j] = true;
             }
         }
         gameController.UpdateClaimPanel();

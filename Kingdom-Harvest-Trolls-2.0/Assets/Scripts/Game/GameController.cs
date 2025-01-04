@@ -341,6 +341,7 @@ public class GameController : MonoBehaviour
         }
         //fieldScript.cells[x, y].time_for_peak = 60;
 
+        fieldScript.ready_to_claim[x, y] = false;
         UpdateClaimPanel();
     }
 
@@ -364,6 +365,7 @@ public class GameController : MonoBehaviour
             }
         }
 
+        fieldScript.ready_to_claim[x, y] = false;
         // update claim panel
         cellPressedPanel.gameObject.GetComponent<CellPressedPanelScript>().ChangeTitle(fieldScript.cells[new_x, new_y]);
 

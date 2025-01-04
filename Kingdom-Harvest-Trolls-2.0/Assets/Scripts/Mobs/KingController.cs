@@ -199,7 +199,7 @@ public class KingController : MonoBehaviour
 
                         if (fieldScript.ready_to_claim[index_i + 1, index_j])
                         {
-                            System.Array.Resize(ref ways, ways.Length + 1);
+                            System.Array.Resize(ref claimable_ways, claimable_ways.Length + 1);
                             claimable_ways[claimable_ways.Length - 1] = new Tuple<int, int>(index_i + 1, index_j);
                         }
                     }
@@ -221,7 +221,7 @@ public class KingController : MonoBehaviour
 
                         if (fieldScript.ready_to_claim[index_i + 1, index_j])
                         {
-                            System.Array.Resize(ref ways, ways.Length + 1);
+                            System.Array.Resize(ref claimable_ways, claimable_ways.Length + 1);
                             claimable_ways[claimable_ways.Length - 1] = new Tuple<int, int>(index_i + 1, index_j);
                         }
                     }
@@ -241,7 +241,7 @@ public class KingController : MonoBehaviour
 
                         if (fieldScript.ready_to_claim[index_i - 1, index_j])
                         {
-                            System.Array.Resize(ref ways, ways.Length + 1);
+                            System.Array.Resize(ref claimable_ways, claimable_ways.Length + 1);
                             claimable_ways[claimable_ways.Length - 1] = new Tuple<int, int>(index_i - 1, index_j);
                         }
                     }
@@ -263,7 +263,7 @@ public class KingController : MonoBehaviour
 
                         if (fieldScript.ready_to_claim[index_i - 1, index_j])
                         {
-                            System.Array.Resize(ref ways, ways.Length + 1);
+                            System.Array.Resize(ref claimable_ways, claimable_ways.Length + 1);
                             claimable_ways[claimable_ways.Length - 1] = new Tuple<int, int>(index_i - 1, index_j);
                         }
                     }
@@ -283,7 +283,7 @@ public class KingController : MonoBehaviour
 
                         if (fieldScript.ready_to_claim[index_i, index_j + 1])
                         {
-                            System.Array.Resize(ref ways, ways.Length + 1);
+                            System.Array.Resize(ref claimable_ways, claimable_ways.Length + 1);
                             claimable_ways[claimable_ways.Length - 1] = new Tuple<int, int>(index_i, index_j + 1);
                         }
                     }
@@ -305,7 +305,7 @@ public class KingController : MonoBehaviour
 
                         if (fieldScript.ready_to_claim[index_i, index_j + 1])
                         {
-                            System.Array.Resize(ref ways, ways.Length + 1);
+                            System.Array.Resize(ref claimable_ways, claimable_ways.Length + 1);
                             claimable_ways[claimable_ways.Length - 1] = new Tuple<int, int>(index_i, index_j + 1);
                         }
                     }
@@ -325,7 +325,7 @@ public class KingController : MonoBehaviour
 
                         if (fieldScript.ready_to_claim[index_i, index_j - 1])
                         {
-                            System.Array.Resize(ref ways, ways.Length + 1);
+                            System.Array.Resize(ref claimable_ways, claimable_ways.Length + 1);
                             claimable_ways[claimable_ways.Length - 1] = new Tuple<int, int>(index_i, index_j - 1);
                         }
                     }
@@ -347,7 +347,7 @@ public class KingController : MonoBehaviour
 
                         if (fieldScript.ready_to_claim[index_i, index_j - 1])
                         {
-                            System.Array.Resize(ref ways, ways.Length + 1);
+                            System.Array.Resize(ref claimable_ways, claimable_ways.Length + 1);
                             claimable_ways[claimable_ways.Length - 1] = new Tuple<int, int>(index_i, index_j - 1);
                         }
                     }
