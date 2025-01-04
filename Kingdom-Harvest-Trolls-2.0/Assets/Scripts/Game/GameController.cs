@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour
     public GameObject NotOkayPanel;
     public GameObject UpgrateCastlePanel;
     public GameObject BuyKnightsPanel;
+    public GameObject BuyPeoplePanel;
     public GameObject SurePanel;
 
     public GameObject WinPanel;
@@ -96,6 +97,7 @@ public class GameController : MonoBehaviour
         OpenOptionPanel();
 
         CloseBuyKnightsPanel();
+        CloseBuyPeoplePanel();
         CloseCastleOkayPanel();
         CloseCellPressedPanel();
         CloseNotOkayPanel();
@@ -445,6 +447,50 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void BuyVillagers()
+    {
+        BuyVillagersPanelScript villagers = BuyPeoplePanel.GetComponent<BuyVillagersPanelScript>();
+
+        if ((coin_amount - villagers.cost_coins < 0) || (wheat_amount - villagers.cost_wheat < 0))
+        {
+            OpenDude(not_enougth);
+        }
+        else
+        {
+            IncreaseCoinAmount(-villagers.cost_coins);
+            IncreaseWheatAmount(-villagers.cost_wheat);
+
+            IncreaseKnightAmount(villagers.villagers_amount);
+
+            for (int i = 0; i < villagers.villagers_amount; i++)
+            {
+                CreateVillager();
+            }
+        }
+    }
+
+    public void BuyKings()
+    {
+        BuyKingsPanelScript kings = BuyPeoplePanel.GetComponent<BuyKingsPanelScript>();
+
+        if ((coin_amount - kings.cost_coins < 0) || (wheat_amount - kings.cost_wheat < 0))
+        {
+            OpenDude(not_enougth);
+        }
+        else
+        {
+            IncreaseCoinAmount(-kings.cost_coins);
+            IncreaseWheatAmount(-kings.cost_wheat);
+
+            IncreaseKnightAmount(kings.kings_amount);
+
+            for (int i = 0; i < kings.kings_amount; i++)
+            {
+                CreateKing();
+            }
+        }
+    }
+
     public void OpenOptionPanel()
     {
         optionPanel.gameObject.SetActive(true);
@@ -458,6 +504,7 @@ public class GameController : MonoBehaviour
     public void CloseCellPressedPanel()
     {
         CloseBuyKnightsPanel();
+        CloseBuyPeoplePanel();
         CloseCastleOkayPanel();
         CloseNotOkayPanel();
         CloseOkayPanel();
@@ -517,6 +564,10 @@ public class GameController : MonoBehaviour
 
     public void CloseCastleOkayPanel()
     {
+        CloseBuyKnightsPanel();
+        CloseBuyPeoplePanel();
+        CloseUpgrateCastlePanel();
+
         CastleOkayPanel.gameObject.SetActive(false);
     }
 
@@ -546,6 +597,16 @@ public class GameController : MonoBehaviour
     public void CloseBuyKnightsPanel()
     {
         BuyKnightsPanel.gameObject.SetActive(false);
+    }
+
+    public void OpenBuyPeoplePanel()
+    {
+        BuyPeoplePanel.gameObject.SetActive(true);
+    }
+
+    public void CloseBuyPeoplePanel()
+    {
+        BuyPeoplePanel.gameObject.SetActive(false);
     }
 
     public void OpenUpgrateCastlePanel()
