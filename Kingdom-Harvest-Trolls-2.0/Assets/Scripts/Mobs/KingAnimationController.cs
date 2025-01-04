@@ -22,6 +22,6 @@ public class KingAnimationController : MonoBehaviour
 
     private void Update()
     {
-        _animator.SetFloat("velocity", (kingController.target == null) ? (0) : (1));
+        _animator.SetFloat("velocity", (!kingController.is_moving) ? (0) : (1));
     }
 }

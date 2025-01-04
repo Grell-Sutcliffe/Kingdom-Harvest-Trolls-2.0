@@ -9,6 +9,7 @@ namespace Game
         public GameObject trollPrefab;
         public GameObject knightPrefab;
         public GameObject villagerPrefab;
+        public GameObject kingPrefab;
         public float interval = 2f;
 
         public GameObject trollPointDownLeft;
@@ -83,6 +84,15 @@ namespace Game
 
             new_spawn.GetComponent<VillagerController>().index_i = index_i;
             new_spawn.GetComponent<VillagerController>().index_j = index_j;
+        }
+
+        public void KingSpawn(Vector3 spawnPosition, int index_i, int index_j)
+        {
+            GameObject new_spawn = Instantiate(kingPrefab, panel.transform);
+            new_spawn.transform.position = spawnPosition;
+
+            new_spawn.GetComponent<KingController>().index_i = index_i;
+            new_spawn.GetComponent<KingController>().index_j = index_j;
         }
     }
 }

@@ -270,6 +270,14 @@ public class GameController : MonoBehaviour
         IncreaseVillagerAmount(1);
     }
 
+    public void CreateKing()
+    {
+        Vector3 new_king = fieldScript.checks[x, y].transform.position;
+        Zoom.GetComponent<EnemySpawner>().KingSpawn(new_king, x, y);
+
+        IncreaseKingAmount(1);
+    }
+
     public void EditCell()
     {
         int rotation = new_cell.rotation;
@@ -602,6 +610,14 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             CreateVillager();
+        }
+    }
+
+    private void CreateNewKings(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            CreateKing();
         }
     }
 
