@@ -201,7 +201,7 @@ public class GameController : MonoBehaviour
             if ((sprite != null) && (fieldScript.cells[index_i, index_j].title == null))
             {
                 free_cells_amount--;
-                happinessScript.ChangeMaxHappinessLevel(1);
+                happinessScript.ChangeMaxHappinessLevel(1, 1);
                 SetNewCell();
             }
             else if ((sprite != null) && (fieldScript.cells[index_i, index_j].title != null))
@@ -265,6 +265,7 @@ public class GameController : MonoBehaviour
 
         if (fieldScript.cells[x, y].type == "castle")
         {
+            happinessScript.ChangeMaxHappinessLevel(2, 0);
             CreateVillager();
         }
 
@@ -710,6 +711,8 @@ public class GameController : MonoBehaviour
             UpdateUpgratePanelInfo();
 
             CreateNewVillagers(new_villagers_amount);
+
+            happinessScript.ChangeCurrentHappinessLevel(1);
         }
     }
 

@@ -23,7 +23,7 @@ public class ColliderScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"SHIT HAPPENS {collision.gameObject.name}");
+        //Debug.Log($"SHIT HAPPENS {collision.gameObject.name}");
         if ((collision.gameObject.tag != "Villager") && (collision.gameObject.tag != "Knight"))
         {
             if (collision.gameObject.tag == "Troll")
@@ -72,6 +72,7 @@ public class ColliderScript : MonoBehaviour
 
         if ((new_cell.type == "castle") && (new_cell.is_destroyed == true) && (new_cell.level > -1))
         {
+            gameController.ChangeCurrentHappinessLevel(-cell.level);
             Invoke("CastleSecondChance", castle_interval);
         }
     }
