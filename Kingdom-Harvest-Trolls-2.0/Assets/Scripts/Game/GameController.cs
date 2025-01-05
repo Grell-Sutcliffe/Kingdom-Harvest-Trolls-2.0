@@ -245,7 +245,7 @@ public class GameController : MonoBehaviour
         last_ind_i = -1;
         last_ind_j = -1;
 
-        Debug.Log("CLICK");
+        //Debug.Log("CLICK");
         set_new_cell.GetComponent<Image>().sprite = sprite;
         set_new_cell.GetComponent<Image>().transform.localEulerAngles = new Vector3(0, 0, 90 * new_cell.rotation);
 
@@ -265,7 +265,7 @@ public class GameController : MonoBehaviour
 
         if (fieldScript.cells[x, y].type == "castle")
         {
-            happinessScript.ChangeMaxHappinessLevel(2, 0);
+            //happinessScript.ChangeMaxHappinessLevel(2, 0);
             CreateVillager();
         }
 
@@ -712,7 +712,7 @@ public class GameController : MonoBehaviour
 
             CreateNewVillagers(new_villagers_amount);
 
-            happinessScript.ChangeCurrentHappinessLevel(1);
+            //happinessScript.ChangeCurrentHappinessLevel(1);
         }
     }
 

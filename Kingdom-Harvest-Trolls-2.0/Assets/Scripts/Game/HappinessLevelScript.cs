@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -20,6 +21,9 @@ public class HappinessLevelScript : MonoBehaviour
     public string yellow = "E9E41F";
     public string red = "C81B1B";
 
+    private float per_1_3 = 1f / 3f;
+    private float per_2_3 = 2f / 3f;
+
     private void Start()
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
@@ -28,7 +32,8 @@ public class HappinessLevelScript : MonoBehaviour
         current_width = max_width;
 
         current_level = gameController.repaired_cells;
-        max_level = current_level + 2; // castle + 2
+        //max_level = current_level + 2; // castle + 2
+        max_level = current_level;
 
         SetCurrentWidth();
     }
@@ -53,17 +58,21 @@ public class HappinessLevelScript : MonoBehaviour
             current_width = 0;
         }
 
-        if (current_level / max_level > 2 / 3)
+        //Debug.Log($"cur / max = {current_level / max_level}, 1 / 3 = {1 / 3}");
+        if (current_level / max_level > per_2_3)
         {
             green_line.GetComponent<Image>().color = Color.green;
+            //Debug.Log("green");
         }
-        else if (current_level / max_level > 1 / 3)
+        else if (current_level / max_level > per_1_3)
         {
             green_line.GetComponent<Image>().color = Color.yellow;
+            //Debug.Log("yellow");
         }
         else
         {
             green_line.GetComponent<Image>().color = Color.red;
+            //Debug.Log("red");
         }
 
         green_line.transform.localScale = new Vector3(current_width, green_line.transform.localScale.y, 0);
