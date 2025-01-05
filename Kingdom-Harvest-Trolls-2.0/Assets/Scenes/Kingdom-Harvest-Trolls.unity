@@ -7889,7 +7889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.22092712, g: 0.7622642, b: 0.20422934, a: 1}
+  m_Color: {r: 0.78113204, g: 0.1031684, b: 0.10456431, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14809,6 +14809,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   green_line: {fileID: 1048677817}
+  color: 
+  green: 38C234
+  yellow: E9E41F
+  red: C81B1B
 --- !u!114 &1802365460
 MonoBehaviour:
   m_ObjectHideFlags: 0

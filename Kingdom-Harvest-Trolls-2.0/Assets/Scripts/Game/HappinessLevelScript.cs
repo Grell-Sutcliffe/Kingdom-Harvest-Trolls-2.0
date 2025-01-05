@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HappinessLevelScript : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class HappinessLevelScript : MonoBehaviour
 
     private float max_level;
     private float current_level;
+
+    public string color;
+    public string green = "38C234";
+    public string yellow = "E9E41F";
+    public string red = "C81B1B";
 
     private void Start()
     {
@@ -46,6 +52,20 @@ public class HappinessLevelScript : MonoBehaviour
         {
             current_width = 0;
         }
+
+        if (current_level / max_level > 2 / 3)
+        {
+            green_line.GetComponent<Image>().color = Color.green;
+        }
+        else if (current_level / max_level > 1 / 3)
+        {
+            green_line.GetComponent<Image>().color = Color.yellow;
+        }
+        else
+        {
+            green_line.GetComponent<Image>().color = Color.red;
+        }
+
         green_line.transform.localScale = new Vector3(current_width, green_line.transform.localScale.y, 0);
         Debug.Log($"Happiness level: max = {max_level}, cur = {current_level}");
     }
