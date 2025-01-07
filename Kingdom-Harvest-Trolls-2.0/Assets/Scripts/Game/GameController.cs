@@ -682,6 +682,8 @@ public class GameController : MonoBehaviour
 
             fieldScript.ChangeCellTag(x, y, "Village");
 
+            happinessScript.ChangeCurrentHappinessLevel(1);
+
             UpdateUpgratePanelInfo();
 
             CloseNotOkayPanel();
