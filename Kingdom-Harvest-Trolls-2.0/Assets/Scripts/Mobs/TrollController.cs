@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TrollController : MonoBehaviour
@@ -24,6 +25,20 @@ public class TrollController : MonoBehaviour
     private string targetTag = "Village";
     private string enemyTag = "Knight";
 
+    [SerializeField] GameObject troll_dialog;
+    [SerializeField] TextMeshProUGUI troll_speech;
+
+    System.Random random = new System.Random();
+
+    private string[] in_touch = {
+        "War",
+        "Blood",
+        "Grr",
+        "...",
+        "Break",
+        "Ruin"
+    };
+
     private void Start()
     {
         current_health = max_health;
@@ -34,6 +49,8 @@ public class TrollController : MonoBehaviour
         enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         closestKnight1 = FindClosestObject(enemies);
         closestKnight2 = FindClosestObject(enemies);
+
+        troll_dialog.SetActive(false);
     }
 
     private void Update()
@@ -180,12 +197,37 @@ public class TrollController : MonoBehaviour
     {
         Vector3 scale = gameObject.transform.localScale;
         gameObject.transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+
+        Vector3 dialog_scale = troll_dialog.transform.localScale;
+        troll_dialog.transform.localScale = new Vector3(-dialog_scale.x, dialog_scale.y, dialog_scale.z);
+
         is_flipped = !is_flipped;
     }
 
     public void TakeDamage(int amount)
     {
         current_health -= amount;
+    }
+
+    public void InTouch()
+    {
+        CancelInvoke("HideDialog");
+
+        int index = random.Next(0, in_touch.Length);
+        ShowDiaog(in_touch[index], 3f);
+    }
+
+    private void ShowDiaog(string speech, float time)
+    {
+        troll_dialog.SetActive(true);
+        troll_speech.text = speech;
+
+        Invoke("HideDialog", time);
+    }
+
+    private void HideDialog()
+    {
+        troll_dialog.SetActive(false);
     }
 
     public void DeathTroll()

@@ -1,6 +1,7 @@
 using Game;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class KnightController : MonoBehaviour
@@ -22,6 +23,20 @@ public class KnightController : MonoBehaviour
 
     //private string targetTag = "Troll";
 
+    [SerializeField] GameObject knight_dialog;
+    [SerializeField] TextMeshProUGUI knight_speech;
+
+    System.Random random = new System.Random();
+
+    private string[] in_touch = {
+        "Fight",
+        "Ouch",
+        "Hi!",
+        "Yes",
+        "Duty",
+        "Ready"
+    };
+
     private void Start()
     {
         current_health = max_health;
@@ -30,6 +45,8 @@ public class KnightController : MonoBehaviour
         controller = GameObject.FindGameObjectWithTag("Canvas").GetComponent<MouseUIController>();
 
         target = null;
+
+        knight_dialog.SetActive(false);
     }
 
     private void Update()
@@ -125,12 +142,37 @@ public class KnightController : MonoBehaviour
     {
         Vector3 scale = gameObject.transform.localScale;
         gameObject.transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+
+        Vector3 dialog_scale = knight_dialog.transform.localScale;
+        knight_dialog.transform.localScale = new Vector3(-dialog_scale.x, dialog_scale.y, dialog_scale.z);
+
         is_flipped = !is_flipped;
     }
 
     public void TakeDamage(int amount)
     {
         current_health -= amount;
+    }
+
+    public void InTouch()
+    {
+        CancelInvoke("HideDialog");
+
+        int index = random.Next(0, in_touch.Length);
+        ShowDiaog(in_touch[index], 3f);
+    }
+
+    private void ShowDiaog(string speech, float time)
+    {
+        knight_dialog.SetActive(true);
+        knight_speech.text = speech;
+
+        Invoke("HideDialog", time);
+    }
+
+    private void HideDialog()
+    {
+        knight_dialog.SetActive(false);
     }
 
     public void DeathKnight()

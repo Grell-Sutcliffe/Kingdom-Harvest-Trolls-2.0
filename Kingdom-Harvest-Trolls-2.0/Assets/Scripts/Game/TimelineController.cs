@@ -18,6 +18,7 @@ public class TimelineController : MonoBehaviour
     public GameObject buy_new_cell_shower;
     public GameObject rotate_new_cell_shower;
     public GameObject buy_knights_shower;
+    public GameObject buy_people_shower;
     public GameObject upgrade_castle_shower;
     public GameObject skip_button;
 
@@ -36,6 +37,7 @@ public class TimelineController : MonoBehaviour
     private string rotate_new_cell_show = "Rotate chosen cell by clicking on the bigger image of it and then place it wherever you want on the map of your Kingdom.";
     private string castle_show = "That is your first castle. Click on it to get more information.";
     private string buy_knights_show = "Here you can fire new knights who will protect your Kingdom from troll's attacks.";
+    private string buy_people_show = "Here you can buy new willagers who will live in your Kingdom and new regents who will help you to collect recources.";
     private string upgrade_castle_show = "And here you can upgrade you castle so cillagers could live better in your Kingdom.";
     private string about_village = "You can collect taxes from the Kingdom and roads by clicking on them. Also don't forget to collect ripe wheat.";
     private string luck = "I wish you best luck! Be wise, my King!";
@@ -118,26 +120,34 @@ public class TimelineController : MonoBehaviour
                 {
                     Turn_IF(false);
                     gameController.FieldCellOnClick(fieldScript.dark_cells[fieldScript.first_castle_x, fieldScript.first_castle_y], fieldScript.first_castle_x, fieldScript.first_castle_y);
-                    gameController.OpenDude(buy_knights_show);
-                    buy_knights_shower.gameObject.SetActive(true);
+                    gameController.OpenDude(upgrade_castle_show);
+                    upgrade_castle_shower.gameObject.SetActive(true);
                 }
 
                 else if (current_index == 9)
                 {
                     Turn_IF(false);
                     gameController.FieldCellOnClick(fieldScript.dark_cells[fieldScript.first_castle_x, fieldScript.first_castle_y], fieldScript.first_castle_x, fieldScript.first_castle_y);
-                    gameController.OpenDude(upgrade_castle_show);
-                    upgrade_castle_shower.gameObject.SetActive(true);
+                    gameController.OpenDude(buy_knights_show);
+                    buy_knights_shower.gameObject.SetActive(true);
                 }
 
                 else if (current_index == 10)
+                {
+                    Turn_IF(false);
+                    gameController.FieldCellOnClick(fieldScript.dark_cells[fieldScript.first_castle_x, fieldScript.first_castle_y], fieldScript.first_castle_x, fieldScript.first_castle_y);
+                    gameController.OpenDude(buy_people_show);
+                    buy_people_shower.gameObject.SetActive(true);
+                }
+
+                else if (current_index == 11)
                 {
                     Turn_IF(false);
                     gameController.OpenDude(about_village);
                     ChangeDudeScale(2f);
                 }
 
-                else if (current_index == 11)
+                else if (current_index == 12)
                 {
                     gameController.OpenDude(luck);
                 }
@@ -190,6 +200,7 @@ public class TimelineController : MonoBehaviour
         buy_new_cell_shower.gameObject.SetActive(IF);
         rotate_new_cell_shower.gameObject.SetActive(IF);
         buy_knights_shower.gameObject.SetActive(IF);
+        buy_people_shower.gameObject.SetActive(IF);
         upgrade_castle_shower.gameObject.SetActive(IF);
     }
 
