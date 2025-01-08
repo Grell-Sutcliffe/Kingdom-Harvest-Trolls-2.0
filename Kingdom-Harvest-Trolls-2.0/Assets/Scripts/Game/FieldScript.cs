@@ -177,7 +177,7 @@ public class FieldScript : MonoBehaviour
         //if (cells[i, j].type == "castle")
         if (dark_cells[i, j].GetComponent<Image>() != null)
         {
-            Debug.Log("YOOO BROO");
+            //Debug.Log("YOOO BROO");
         }
     }
 

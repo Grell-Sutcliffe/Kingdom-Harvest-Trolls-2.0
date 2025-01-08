@@ -35,6 +35,8 @@ public class GameController : MonoBehaviour
     Sprite sprite = null;
     public Sprite empty_sprite;
 
+    private HappinessLevelScript happinessScript;
+
     public GameObject optionPanel;
     public GameObject cellPressedPanel;
 
@@ -86,13 +88,21 @@ public class GameController : MonoBehaviour
     private bool is_lose = false;
 
     public int free_cells_amount;
+    public int filled_cells;
+    public int destroyed_cells;
+    public int repaired_cells;
 
     private void Start()
     {
         fieldScript = Field.GetComponent<FieldScript>();
         cellsScript = Field.GetComponent<CellsScript>();
 
+        happinessScript = GameObject.Find("HappinessLevel").GetComponent<HappinessLevelScript>();
+
         free_cells_amount = fieldScript.width * fieldScript.height - 5;
+        filled_cells = 5;
+        destroyed_cells = 0;
+        repaired_cells = 5;
 
         OpenOptionPanel();
 
@@ -191,6 +201,7 @@ public class GameController : MonoBehaviour
             if ((sprite != null) && (fieldScript.cells[index_i, index_j].title == null))
             {
                 free_cells_amount--;
+                happinessScript.ChangeMaxHappinessLevel(1, 1);
                 SetNewCell();
             }
             else if ((sprite != null) && (fieldScript.cells[index_i, index_j].title != null))
@@ -214,6 +225,11 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void ChangeCurrentHappinessLevel(int amount)
+    {
+        happinessScript.ChangeCurrentHappinessLevel(-1);
+    }
+
     public void SetNewCell()
     {
         last_rotation = new Vector3(0, 0, 0);
@@ -229,7 +245,7 @@ public class GameController : MonoBehaviour
         last_ind_i = -1;
         last_ind_j = -1;
 
-        Debug.Log("CLICK");
+        //Debug.Log("CLICK");
         set_new_cell.GetComponent<Image>().sprite = sprite;
         set_new_cell.GetComponent<Image>().transform.localEulerAngles = new Vector3(0, 0, 90 * new_cell.rotation);
 
@@ -249,6 +265,7 @@ public class GameController : MonoBehaviour
 
         if (fieldScript.cells[x, y].type == "castle")
         {
+            //happinessScript.ChangeMaxHappinessLevel(2, 0);
             CreateVillager();
         }
 
@@ -665,6 +682,8 @@ public class GameController : MonoBehaviour
 
             fieldScript.ChangeCellTag(x, y, "Village");
 
+            happinessScript.ChangeCurrentHappinessLevel(1);
+
             UpdateUpgratePanelInfo();
 
             CloseNotOkayPanel();
@@ -694,6 +713,8 @@ public class GameController : MonoBehaviour
             UpdateUpgratePanelInfo();
 
             CreateNewVillagers(new_villagers_amount);
+
+            //happinessScript.ChangeCurrentHappinessLevel(1);
         }
     }
 
